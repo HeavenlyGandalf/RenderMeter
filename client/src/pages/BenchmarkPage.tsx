@@ -32,7 +32,7 @@ export default function BenchmarkPage() {
     setError('');
 
     try {
-      const rendered = renderTemplate(engine, template);
+      const rendered = await renderTemplate(engine, template);
       setResult(rendered);
 
       await saveResult({

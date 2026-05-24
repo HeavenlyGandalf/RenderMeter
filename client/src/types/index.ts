@@ -1,4 +1,4 @@
-export type TemplateEngine = 'handlebars' | 'mustache';
+export type TemplateEngine = 'handlebars' | 'mustache' | 'pug' | 'ejs';
 
 export interface BenchmarkResult {
   _id: string;
