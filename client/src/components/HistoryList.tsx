@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchResults } from '../api/results';
-import type { BenchmarkResult } from '../types';
+import type { SavedResult as BenchmarkResult } from '../types';
 
 interface Props {
   refreshKey: number;

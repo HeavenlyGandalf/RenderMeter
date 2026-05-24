@@ -31,19 +31,41 @@ body {
 .header {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
-  padding: 0.9rem 1.5rem;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.header h1 {
-  font-size: 1.35rem;
+.header-brand h1 {
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
-.header p {
+.header-brand p {
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   margin-top: 0.1rem;
 }
+
+.header-nav {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-link:hover { background: #f1f5f9; color: var(--text); }
+.nav-link.active { background: var(--primary); color: #fff; }
 
 /* ── Page layout ─────────────────────────── */
 .page {
@@ -116,6 +138,12 @@ select {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.checkboxes-list{
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 /* ── Buttons ─────────────────────────────── */
@@ -216,4 +244,206 @@ select {
   color: var(--muted);
   font-size: 0.87rem;
   font-style: italic;
+}
+
+/* ── Engine multi-select ─────────────────── */
+.engine-label.checked {
+  color: var(--engine-color, var(--primary));
+  font-weight: 600;
+}
+
+/* ── Scenario selector ───────────────────── */
+.scenario-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.scenario-desc {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-left: 0.25rem;
+}
+
+.scenario-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #e2e8f0;
+  color: #475569;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  margin-right: 0.35rem;
+}
+
+/* ── Comparison table ────────────────────── */
+.comparison-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.scenario-section {}
+
+.scenario-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.scenario-winner {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.engine-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+.results-table tr.fastest td {
+  background: #f0fdf4;
+}
+
+/* ── Bar chart ───────────────────────────── */
+.chart-wrap {
+  overflow-x: auto;
+}
+
+.bar-chart {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Summary block ───────────────────────── */
+.summary-block h2 {
+  margin-bottom: 0.75rem;
+}
+
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.summary-item {
+  font-size: 0.88rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  line-height: 1.5;
+}
+
+.summary-winner { background: #f0fdf4; color: #166534; }
+.summary-info   { background: #eff6ff; color: #1e40af; }
+.summary-warn   { background: #fffbeb; color: #92400e; }
+
+/* ── Template viewer ─────────────────────── */
+.template-viewer-card {
+  padding-bottom: 1rem;
+}
+
+.toggle-templates {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.toggle-templates:hover { color: var(--primary); }
+
+.toggle-icon {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.template-viewer {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.engine-tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 0.3rem 0.75rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--muted);
+  font-weight: 500;
+  transition: background 0.12s, color 0.12s;
+}
+
+.tab-btn:hover { background: #f1f5f9; color: var(--text); }
+.tab-btn.active { background: var(--primary); color: #fff; }
+
+.template-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.template-note code {
+  background: #f1f5f9;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+/* ── Scenario Data Viewer ────────────────────── */
+.scenario-custom-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.parse-error {
+  font-size: 0.82rem;
+  color: var(--error-text);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 5px;
+  padding: 0.35rem 0.7rem;
+}
+
+/* ── Playground note ─────────────────────── */
+.server-note {
+  min-height: 1.4rem;
+}
+
+.badge-note {
+  font-size: 0.78rem;
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+  font-weight: 500;
 }

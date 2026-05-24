@@ -1,5 +1,5 @@
 import api from './axios';
-import type { BenchmarkResult } from '../types';
+import type { SavedResult as BenchmarkResult } from '../types';
 
 interface SaveResultPayload {
   templateEngine: string;

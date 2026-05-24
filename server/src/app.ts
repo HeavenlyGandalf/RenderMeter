@@ -4,6 +4,7 @@ import 'dotenv/config';
 import healthRoutes from './routes/health.routes';
 import resultsRoutes from './routes/results.routes';
 import renderRoutes from './routes/render.routes';
+import benchmarkRoutes from './routes/benchmark.routes';
 
 const app = express();
 
@@ -13,5 +14,6 @@ app.use(express.json());
 app.use('/api/health', healthRoutes);
 app.use('/api/results', resultsRoutes);
 app.use('/api/render', renderRoutes);
+app.use('/api/benchmark', benchmarkRoutes);
 
 export default app;
