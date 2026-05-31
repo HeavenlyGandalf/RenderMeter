@@ -1,0 +1,136 @@
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.1rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-bright);
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.brandSub {
+  font-size: 0.68rem;
+  color: var(--text-faint);
+  margin-top: 0.1rem;
+  letter-spacing: 0.02em;
+}
+
+.sectionLabel {
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+  padding: 1.1rem 1.1rem 0.4rem;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0 0.6rem;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--text-dim);
+  transition: background 0.15s, color 0.15s;
+  border: 1px solid transparent;
+}
+
+.link:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.link.active {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-color: rgba(0, 229, 255, 0.15);
+}
+
+.linkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.link.active .linkIcon {
+  opacity: 1;
+}
+
+.linkText {
+  display: flex;
+  flex-direction: column;
+}
+
+.linkLabel {
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.linkSub {
+  font-size: 0.66rem;
+  color: var(--text-faint);
+  margin-top: 0.05rem;
+}
+
+.link.active .linkSub {
+  color: rgba(0, 229, 255, 0.5);
+}
+
+.footer {
+  margin-top: auto;
+  padding: 1rem 1.1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footerTag {
+  font-size: 0.68rem;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}

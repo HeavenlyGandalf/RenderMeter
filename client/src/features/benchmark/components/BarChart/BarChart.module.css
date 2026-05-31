@@ -1,0 +1,8 @@
+.wrap {
+  overflow-x: auto;
+}
+
+.chart {
+  display: block;
+  max-width: 100%;
+}
