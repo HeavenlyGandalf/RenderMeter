@@ -106,11 +106,13 @@ export default function PlaygroundPage() {
       </div>
 
       <div className="card controls">
-        <EngineSelector value={engine} onChange={handleEngineChange} />
-        <div className="server-note">
-          {SERVER_ENGINES.includes(engine) && (
-            <span className="badge-note">{t('playground.serverBadge')}</span>
-          )}
+        <div className="card--header">
+          <EngineSelector value={engine} onChange={handleEngineChange} />
+          <div className="server-note">
+            {SERVER_ENGINES.includes(engine) && (
+              <span className="badge-note">{t('playground.serverBadge')}</span>
+            )}
+          </div>
         </div>
         <EditorTabs
           template={template}
