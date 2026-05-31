@@ -1,4 +1,5 @@
-import { SCENARIOS, SCENARIO_LABELS } from '../constants';
+import { useTranslation } from 'react-i18next';
+import { SCENARIOS } from '../constants';
 import type { Scenario } from '../types';
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export default function ScenarioSelector({ selected, onChange, disabled }: Props) {
+  const { t } = useTranslation();
+
   const toggle = (scenario: Scenario) => {
     onChange(
       selected.includes(scenario)
@@ -18,7 +21,7 @@ export default function ScenarioSelector({ selected, onChange, disabled }: Props
 
   return (
     <div className="field">
-      <label>Scenarios</label>
+      <label>{t('scenarios.label')}</label>
       <div className="scenario-list">
         {SCENARIOS.map((scenario) => (
           <label key={scenario} className="checkbox-label">
@@ -29,7 +32,7 @@ export default function ScenarioSelector({ selected, onChange, disabled }: Props
               disabled={disabled}
             />
             <span className="scenario-badge">{scenario}</span>
-            <span className="scenario-desc">{SCENARIO_LABELS[scenario].split(' — ')[1]}</span>
+            <span className="scenario-desc">{t(`scenarios.${scenario}`)}</span>
           </label>
         ))}
       </div>

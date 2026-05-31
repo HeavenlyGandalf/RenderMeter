@@ -47,8 +47,8 @@ export default function BarChart({ run }: Props) {
             const y = toY(v);
             return (
               <g key={i}>
-                <line x1={0} y1={y} x2={CW} y2={y} stroke="#e2e8f0" strokeWidth={1} />
-                <text x={-6} y={y + 4} textAnchor="end" fontSize={10} fill="#94a3b8">
+                <line x1={0} y1={y} x2={CW} y2={y} stroke="#232b38" strokeWidth={1} />
+                <text x={-6} y={y + 4} textAnchor="end" fontSize={10} fill="#4a5568">
                   {r3(v)}
                 </text>
               </g>
@@ -89,7 +89,7 @@ export default function BarChart({ run }: Props) {
           })}
 
           {/* X axis line */}
-          <line x1={0} y1={CH} x2={CW} y2={CH} stroke="#cbd5e1" />
+          <line x1={0} y1={CH} x2={CW} y2={CH} stroke="#2e3a4a" />
 
           {/* Scenario labels */}
           {results.map((r, si) => (
@@ -99,7 +99,7 @@ export default function BarChart({ run }: Props) {
               y={CH + 16}
               textAnchor="middle"
               fontSize={12}
-              fill="#475569"
+              fill="#8899aa"
               fontWeight="600"
             >
               {r.scenario}
@@ -111,7 +111,7 @@ export default function BarChart({ run }: Props) {
             transform={`translate(-44, ${CH / 2}) rotate(-90)`}
             textAnchor="middle"
             fontSize={10}
-            fill="#94a3b8"
+            fill="#4a5568"
           >
             avg render time (ms)
           </text>
@@ -129,7 +129,7 @@ export default function BarChart({ run }: Props) {
                 fill={ENGINE_COLORS[engine as TemplateEngine] ?? '#888'}
                 rx={2}
               />
-              <text x={15} y={9} fontSize={11} fill="#475569">
+              <text x={15} y={9} fontSize={11} fill="#8899aa">
                 {engine}
               </text>
             </g>

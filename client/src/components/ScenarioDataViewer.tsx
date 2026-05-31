@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import Editor from '@monaco-editor/react';
 import { fetchScenarios } from '../api/benchmark';
 import type { Scenario } from '../types';
@@ -8,14 +9,8 @@ interface Props {
   onCustomDataChange: (data: object | null) => void;
 }
 
-const SCENARIO_LABELS: Record<Scenario, string> = {
-  simple: 'Simple',
-  medium: 'Medium',
-  heavy: 'Heavy',
-  extreme: 'Extreme',
-};
-
 export default function ScenarioDataViewer({ onCustomDataChange }: Props) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<Scenario>('simple');
   const [scenarioData, setScenarioData] = useState<Record<string, unknown> | null>(null);
@@ -34,7 +29,6 @@ export default function ScenarioDataViewer({ onCustomDataChange }: Props) {
     }
   }, [open, scenarioData]);
 
-  // When switching to custom mode — seed editor with current scenario's data
   useEffect(() => {
     if (customMode && scenarioData) {
       const json = JSON.stringify(scenarioData[activeTab], null, 2);
@@ -53,7 +47,6 @@ export default function ScenarioDataViewer({ onCustomDataChange }: Props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customMode]);
 
-  // When tab changes in custom mode — seed editor with new tab's data
   useEffect(() => {
     if (customMode && scenarioData) {
       const json = JSON.stringify(scenarioData[activeTab], null, 2);
@@ -76,12 +69,8 @@ export default function ScenarioDataViewer({ onCustomDataChange }: Props) {
       setParseError('');
       onCustomDataChange(parsed);
     } catch {
-      setParseError('Invalid JSON — fix the data to apply');
+      setParseError(t('scenarioData.parseError'));
     }
-  }
-
-  function handleToggleCustom() {
-    setCustomMode((prev) => !prev);
   }
 
   const viewValue = scenarioData
@@ -92,17 +81,20 @@ export default function ScenarioDataViewer({ onCustomDataChange }: Props) {
     <div className="card template-viewer-card">
       <button className="toggle-templates" onClick={() => setOpen((v) => !v)}>
         <span className="toggle-icon">{open ? '▾' : '▸'}</span>
-        Scenario Data
-        {customMode && <span className="badge-note" style={{ marginLeft: '0.5rem' }}>custom data active</span>}
+        {t('scenarioData.toggleLabel')}
+        {customMode && (
+          <span className="badge-note" style={{ marginLeft: '0.5rem' }}>
+            {t('scenarioData.customBadge')}
+          </span>
+        )}
       </button>
 
       {open && (
         <div className="template-viewer">
-          {loading && <p className="muted">Loading scenario data…</p>}
+          {loading && <p className="muted">{t('scenarioData.loading')}</p>}
 
           {!loading && scenarioData && (
             <>
-              {/* Tabs */}
               <div className="engine-tabs">
                 {SCENARIOS.map((s) => (
                   <button
@@ -110,32 +102,26 @@ export default function ScenarioDataViewer({ onCustomDataChange }: Props) {
                     className={`tab-btn ${activeTab === s ? 'active' : ''}`}
                     onClick={() => setActiveTab(s)}
                   >
-                    {SCENARIO_LABELS[s]}
+                    {t(`scenarios.${s}_tab`, { defaultValue: s.charAt(0).toUpperCase() + s.slice(1) })}
                   </button>
                 ))}
               </div>
 
-              {/* Custom mode toggle */}
               <div className="scenario-custom-row">
                 <label className="checkbox-label">
                   <input
                     type="checkbox"
                     checked={customMode}
-                    onChange={handleToggleCustom}
+                    onChange={() => setCustomMode((prev) => !prev)}
                   />
-                  Use custom data for benchmark run
+                  {t('scenarioData.customToggle')}
                 </label>
                 {customMode && (
-                  <p className="template-note">
-                    Edit the JSON below. The modified data will be used instead of the built-in scenario
-                    data when you run the benchmark. Switch tabs to seed a different scenario's data as starting point.
-                  </p>
+                  <p className="template-note">{t('scenarioData.customNote')}</p>
                 )}
               </div>
 
-              {parseError && (
-                <p className="parse-error">{parseError}</p>
-              )}
+              {parseError && <p className="parse-error">{parseError}</p>}
 
               <div className="editor-wrap">
                 <Editor

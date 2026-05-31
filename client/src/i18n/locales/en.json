@@ -1,0 +1,98 @@
+{
+  "sidebar": {
+    "subtitle": "Template Engine Lab",
+    "nav": "Navigation",
+    "footer": "v0.1 · Node.js"
+  },
+  "nav": {
+    "benchmark": "Benchmark",
+    "benchmarkSub": "Multi-engine comparison",
+    "playground": "Playground",
+    "playgroundSub": "Single-engine sandbox"
+  },
+  "benchmark": {
+    "title": "Benchmark",
+    "subtitle": "Compare rendering performance across multiple template engines and scenarios",
+    "runsPerScenario": "Runs per scenario",
+    "runsOption": "{{count}} runs",
+    "runAll": "Run All Benchmarks",
+    "running": "Running benchmark…",
+    "errorSelect": "Select at least one engine and one scenario",
+    "resultsHeading": "Results — {{runs}} runs · {{date}}",
+    "chartHeading": "Chart — avg render time (ms)",
+    "history": "History",
+    "show": "show",
+    "historyDate": "Date",
+    "historyEngines": "Engines",
+    "historyScenarios": "Scenarios",
+    "historyRuns": "Runs"
+  },
+  "playground": {
+    "title": "Playground",
+    "subtitle": "Write, render and time single templates interactively",
+    "serverBadge": "Renders on server (Node.js)"
+  },
+  "runner": {
+    "run": "Run Benchmark",
+    "running": "Running…"
+  },
+  "engines": {
+    "label": "Engines",
+    "selectLabel": "Template Engine"
+  },
+  "scenarios": {
+    "label": "Scenarios",
+    "simple": "5 items",
+    "medium": "100 items + users",
+    "heavy": "500 items + depts",
+    "extreme": "1000 items + deep nesting"
+  },
+  "comparison": {
+    "fastest": "{{engine}} fastest",
+    "colEngine": "Engine",
+    "colAvg": "Avg (ms)",
+    "colMedian": "Median (ms)",
+    "colMin": "Min (ms)",
+    "colMax": "Max (ms)",
+    "colCompile": "Compile (ms)",
+    "colVsFastest": "vs fastest"
+  },
+  "summary": {
+    "heading": "Summary",
+    "winner": "{{scenario}}: {{engine}} fastest at {{avg}} ms avg — {{slowest}} is ×{{ratio}} slower",
+    "variance": "{{engine}} in {{scenario}}: high variance (min {{min}} ms → max {{max}} ms, ×{{spread}} spread) — consider more warm-up or fewer background tasks",
+    "overall": "Overall: {{winner}} wins {{count}}/{{total}} scenarios"
+  },
+  "templates": {
+    "toggleLabel": "Templates used in benchmarks",
+    "loading": "Loading…",
+    "note": "All engines receive identical data — only syntax differs. Data: <code>title</code>, <code>description</code>, <code>items[]</code>, <code>users[]</code>, and optional <code>departments[]</code> (heavy / extreme scenarios)."
+  },
+  "scenarioData": {
+    "toggleLabel": "Scenario Data",
+    "customBadge": "custom data active",
+    "loading": "Loading scenario data…",
+    "customToggle": "Use custom data for benchmark run",
+    "customNote": "Edit the JSON below. The modified data will be used instead of the built-in scenario data when you run the benchmark. Switch tabs to seed a different scenario's data as starting point.",
+    "parseError": "Invalid JSON — fix the data to apply"
+  },
+  "history": {
+    "loading": "Loading…",
+    "empty": "No runs yet — start your first benchmark!",
+    "colEngine": "Engine",
+    "colTime": "Time (ms)",
+    "colSize": "Size (chars)",
+    "colDate": "Date"
+  },
+  "preview": {
+    "heading": "Preview"
+  },
+  "error": {
+    "dismiss": "Dismiss error"
+  },
+  "lang": {
+    "en": "EN",
+    "ru": "RU",
+    "fr": "FR"
+  }
+}

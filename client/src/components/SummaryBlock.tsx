@@ -1,12 +1,16 @@
+import { useTranslation } from 'react-i18next';
 import type { BenchmarkRun, TemplateEngine, EngineMetrics } from '../types';
 
 interface Props {
   run: BenchmarkRun;
 }
 
+type SummaryType = 'winner' | 'info' | 'warn';
+
 interface Point {
-  label: string;
-  type: 'winner' | 'info' | 'warn';
+  key: string;
+  type: SummaryType;
+  vars: Record<string, string | number>;
 }
 
 function analyze(run: BenchmarkRun): Point[] {
@@ -26,29 +30,42 @@ function analyze(run: BenchmarkRun): Point[] {
     wins[fastestName] = (wins[fastestName] ?? 0) + 1;
 
     points.push({
-      label: `${scenario}: ${fastestName} fastest at ${fastestM.avg.toFixed(3)} ms avg — ${slowestName} is ×${ratio.toFixed(1)} slower`,
+      key: 'summary.winner',
       type: 'winner',
+      vars: {
+        scenario,
+        engine: fastestName,
+        avg: fastestM.avg.toFixed(3),
+        slowest: slowestName,
+        ratio: ratio.toFixed(1),
+      },
     });
 
-    // Warn if spread is very high (max/min ratio > 5)
     for (const [engine, m] of entries) {
       const spread = m.max / m.min;
       if (spread > 5) {
         points.push({
-          label: `${engine} in ${scenario}: high variance (min ${m.min.toFixed(3)} ms → max ${m.max.toFixed(3)} ms, ×${spread.toFixed(1)} spread) — consider more warm-up or fewer background tasks`,
+          key: 'summary.variance',
           type: 'warn',
+          vars: {
+            engine,
+            scenario,
+            min: m.min.toFixed(3),
+            max: m.max.toFixed(3),
+            spread: spread.toFixed(1),
+          },
         });
       }
     }
   }
 
-  // Overall winner
   const sorted = (Object.entries(wins) as [TemplateEngine, number][]).sort((a, b) => b[1] - a[1]);
   if (sorted.length > 0 && run.results.length > 1) {
     const [winner, count] = sorted[0];
     points.push({
-      label: `Overall: ${winner} wins ${count}/${run.results.length} scenarios`,
+      key: 'summary.overall',
       type: 'info',
+      vars: { winner, count, total: run.results.length },
     });
   }
 
@@ -56,16 +73,17 @@ function analyze(run: BenchmarkRun): Point[] {
 }
 
 export default function SummaryBlock({ run }: Props) {
+  const { t } = useTranslation();
   const points = analyze(run);
   if (!points.length) return null;
 
   return (
     <div className="summary-block">
-      <h2>Summary</h2>
+      <h2>{t('summary.heading')}</h2>
       <ul className="summary-list">
         {points.map((p, i) => (
           <li key={i} className={`summary-item summary-${p.type}`}>
-            {p.label}
+            {t(p.key, p.vars)}
           </li>
         ))}
       </ul>

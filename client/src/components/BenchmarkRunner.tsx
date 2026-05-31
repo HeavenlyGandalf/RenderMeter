@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 interface Props {
   isRunning: boolean;
   executionTimeMs: number | null;
@@ -5,10 +7,12 @@ interface Props {
 }
 
 export default function BenchmarkRunner({ isRunning, executionTimeMs, onRun }: Props) {
+  const { t } = useTranslation();
+
   return (
     <div className="runner">
       <button className="btn-primary" onClick={onRun} disabled={isRunning}>
-        {isRunning ? 'Running…' : 'Run Benchmark'}
+        {isRunning ? t('runner.running') : t('runner.run')}
       </button>
 
       {executionTimeMs !== null && (

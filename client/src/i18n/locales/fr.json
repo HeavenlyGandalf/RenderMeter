@@ -1,0 +1,98 @@
+{
+  "sidebar": {
+    "subtitle": "Laboratoire de moteurs de templates",
+    "nav": "Navigation",
+    "footer": "v0.1 · Node.js"
+  },
+  "nav": {
+    "benchmark": "Benchmark",
+    "benchmarkSub": "Comparaison multi-moteur",
+    "playground": "Bac à sable",
+    "playgroundSub": "Moteur unique"
+  },
+  "benchmark": {
+    "title": "Benchmark",
+    "subtitle": "Comparez les performances de rendu entre plusieurs moteurs de templates et scénarios",
+    "runsPerScenario": "Exécutions par scénario",
+    "runsOption": "{{count}} exécutions",
+    "runAll": "Lancer tous les benchmarks",
+    "running": "En cours…",
+    "errorSelect": "Sélectionnez au moins un moteur et un scénario",
+    "resultsHeading": "Résultats — {{runs}} exécutions · {{date}}",
+    "chartHeading": "Graphique — temps de rendu moyen (ms)",
+    "history": "Historique",
+    "show": "afficher",
+    "historyDate": "Date",
+    "historyEngines": "Moteurs",
+    "historyScenarios": "Scénarios",
+    "historyRuns": "Exécutions"
+  },
+  "playground": {
+    "title": "Bac à sable",
+    "subtitle": "Écrivez, rendez et chronométrez vos templates en temps réel",
+    "serverBadge": "Rendu côté serveur (Node.js)"
+  },
+  "runner": {
+    "run": "Lancer le benchmark",
+    "running": "En cours…"
+  },
+  "engines": {
+    "label": "Moteurs",
+    "selectLabel": "Moteur de template"
+  },
+  "scenarios": {
+    "label": "Scénarios",
+    "simple": "5 éléments",
+    "medium": "100 éléments + utilisateurs",
+    "heavy": "500 éléments + départements",
+    "extreme": "1000 éléments + imbrication profonde"
+  },
+  "comparison": {
+    "fastest": "{{engine}} le plus rapide",
+    "colEngine": "Moteur",
+    "colAvg": "Moy. (ms)",
+    "colMedian": "Médiane (ms)",
+    "colMin": "Min (ms)",
+    "colMax": "Max (ms)",
+    "colCompile": "Compilation (ms)",
+    "colVsFastest": "vs le plus rapide"
+  },
+  "summary": {
+    "heading": "Synthèse",
+    "winner": "{{scenario}} : {{engine}} le plus rapide à {{avg}} ms en moyenne — {{slowest}} est ×{{ratio}} plus lent",
+    "variance": "{{engine}} dans {{scenario}} : haute variance (min {{min}} ms → max {{max}} ms, écart ×{{spread}}) — envisagez un meilleur préchauffage ou moins de tâches en arrière-plan",
+    "overall": "Au total : {{winner}} gagne {{count}}/{{total}} scénarios"
+  },
+  "templates": {
+    "toggleLabel": "Templates utilisés dans les benchmarks",
+    "loading": "Chargement…",
+    "note": "Tous les moteurs reçoivent les mêmes données — seule la syntaxe diffère. Données : <code>title</code>, <code>description</code>, <code>items[]</code>, <code>users[]</code>, et optionnellement <code>departments[]</code> (scénarios heavy / extreme)."
+  },
+  "scenarioData": {
+    "toggleLabel": "Données de scénario",
+    "customBadge": "données personnalisées",
+    "loading": "Chargement des données…",
+    "customToggle": "Utiliser des données personnalisées pour le benchmark",
+    "customNote": "Modifiez le JSON ci-dessous. Les données modifiées seront utilisées à la place des données de scénario intégrées. Changez d'onglet pour partir des données d'un autre scénario.",
+    "parseError": "JSON invalide — corrigez les données pour les appliquer"
+  },
+  "history": {
+    "loading": "Chargement…",
+    "empty": "Aucune exécution — lancez votre premier benchmark !",
+    "colEngine": "Moteur",
+    "colTime": "Temps (ms)",
+    "colSize": "Taille (car.)",
+    "colDate": "Date"
+  },
+  "preview": {
+    "heading": "Aperçu"
+  },
+  "error": {
+    "dismiss": "Fermer l'erreur"
+  },
+  "lang": {
+    "en": "EN",
+    "ru": "RU",
+    "fr": "FR"
+  }
+}

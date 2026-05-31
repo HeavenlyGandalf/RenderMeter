@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { renderTemplate } from '../renderer';
 import { saveResult } from '../api/results';
 import { DEFAULT_TEMPLATES, SERVER_ENGINES } from '../constants';
@@ -11,6 +12,7 @@ import HistoryList from '../components/HistoryList';
 import ErrorMessage from '../components/ErrorMessage';
 
 export default function PlaygroundPage() {
+  const { t } = useTranslation();
   const [engine, setEngine] = useState<TemplateEngine>('handlebars');
   const [template, setTemplate] = useState(DEFAULT_TEMPLATES['handlebars']);
   const [isRunning, setIsRunning] = useState(false);
@@ -51,11 +53,16 @@ export default function PlaygroundPage() {
 
   return (
     <main className="page">
+      <div className="page-header">
+        <div className="page-title">{t('playground.title')}</div>
+        <div className="page-subtitle">{t('playground.subtitle')}</div>
+      </div>
+
       <div className="card controls">
         <EngineSelector value={engine} onChange={handleEngineChange} />
         <div className="server-note">
           {SERVER_ENGINES.includes(engine) && (
-            <span className="badge-note">Renders on server (Node.js)</span>
+            <span className="badge-note">{t('playground.serverBadge')}</span>
           )}
         </div>
         <TemplateEditor value={template} onChange={setTemplate} />
@@ -70,7 +77,7 @@ export default function PlaygroundPage() {
       <PreviewPanel html={result?.html ?? ''} />
 
       <div className="card">
-        <h2>History</h2>
+        <h2>{t('benchmark.history')}</h2>
         <HistoryList refreshKey={historyKey} />
       </div>
     </main>

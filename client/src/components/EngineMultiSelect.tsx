@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { ENGINES, ENGINE_COLORS } from '../constants';
 import type { TemplateEngine } from '../types';
 
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export default function EngineMultiSelect({ selected, onChange, disabled }: Props) {
+  const { t } = useTranslation();
+
   const toggle = (engine: TemplateEngine) => {
     onChange(
       selected.includes(engine)
@@ -18,7 +21,7 @@ export default function EngineMultiSelect({ selected, onChange, disabled }: Prop
 
   return (
     <div className="field">
-      <label>Engines</label>
+      <label>{t('engines.label')}</label>
       <div className="checkboxes checkboxes-list">
         {ENGINES.map((engine) => (
           <label

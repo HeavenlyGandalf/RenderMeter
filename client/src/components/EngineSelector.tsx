@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { ENGINES } from '../constants';
 import type { TemplateEngine } from '../types';
 
@@ -7,9 +8,11 @@ interface Props {
 }
 
 export default function EngineSelector({ value, onChange }: Props) {
+  const { t } = useTranslation();
+
   return (
     <div className="field">
-      <label htmlFor="engine-select">Template Engine</label>
+      <label htmlFor="engine-select">{t('engines.selectLabel')}</label>
       <select
         id="engine-select"
         value={value}

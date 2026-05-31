@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { runBenchmark, fetchBenchmarkHistory } from '../api/benchmark';
 import type { BenchmarkRun, TemplateEngine, Scenario } from '../types';
 import { ENGINES, SCENARIOS, RUNS_OPTIONS } from '../constants';
@@ -12,6 +13,7 @@ import TemplateViewer from '../components/TemplateViewer';
 import ScenarioDataViewer from '../components/ScenarioDataViewer';
 
 export default function BenchmarkPage() {
+  const { t, i18n } = useTranslation();
   const [engines, setEngines] = useState<TemplateEngine[]>([...ENGINES]);
   const [scenarios, setScenarios] = useState<Scenario[]>([...SCENARIOS]);
   const [runs, setRuns] = useState(100);
@@ -29,7 +31,7 @@ export default function BenchmarkPage() {
 
   async function handleRun() {
     if (engines.length === 0 || scenarios.length === 0) {
-      setError('Select at least one engine and one scenario');
+      setError(t('benchmark.errorSelect'));
       return;
     }
 
@@ -52,16 +54,21 @@ export default function BenchmarkPage() {
     }
   }
 
+  const locale = i18n.language === 'ru' ? 'ru-RU' : i18n.language === 'fr' ? 'fr-FR' : 'en-US';
+
   return (
     <main className="page">
+      <div className="page-header">
+        <div className="page-title">{t('benchmark.title')}</div>
+        <div className="page-subtitle">{t('benchmark.subtitle')}</div>
+      </div>
 
-      {/* Config */}
       <div className="card controls">
         <EngineMultiSelect selected={engines} onChange={setEngines} disabled={isRunning} />
         <ScenarioSelector selected={scenarios} onChange={setScenarios} disabled={isRunning} />
 
         <div className="field">
-          <label htmlFor="runs-select">Runs per scenario</label>
+          <label htmlFor="runs-select">{t('benchmark.runsPerScenario')}</label>
           <select
             id="runs-select"
             value={runs}
@@ -69,7 +76,7 @@ export default function BenchmarkPage() {
             disabled={isRunning}
           >
             {RUNS_OPTIONS.map((n) => (
-              <option key={n} value={n}>{n} runs</option>
+              <option key={n} value={n}>{t('benchmark.runsOption', { count: n })}</option>
             ))}
           </select>
         </div>
@@ -77,23 +84,25 @@ export default function BenchmarkPage() {
         {error && <ErrorMessage message={error} onDismiss={() => setError('')} />}
 
         <button className="btn-primary" onClick={handleRun} disabled={isRunning}>
-          {isRunning ? 'Running benchmark…' : 'Run All Benchmarks'}
+          {isRunning ? t('benchmark.running') : t('benchmark.runAll')}
         </button>
       </div>
 
       <TemplateViewer />
       <ScenarioDataViewer onCustomDataChange={setCustomData} />
 
-      {/* Results */}
       {currentRun && (
         <>
           <div className="card">
-            <h2>Results — {currentRun.runs} runs · {new Date(currentRun.createdAt).toLocaleString('ru')}</h2>
+            <h2>{t('benchmark.resultsHeading', {
+              runs: currentRun.runs,
+              date: new Date(currentRun.createdAt).toLocaleString(locale),
+            })}</h2>
             <ComparisonTable run={currentRun} />
           </div>
 
           <div className="card">
-            <h2>Chart — avg render time (ms)</h2>
+            <h2>{t('benchmark.chartHeading')}</h2>
             <BarChart run={currentRun} />
           </div>
 
@@ -103,30 +112,29 @@ export default function BenchmarkPage() {
         </>
       )}
 
-      {/* History */}
       {history.length > 0 && (
         <div className="card">
-          <h2>History</h2>
+          <h2>{t('benchmark.history')}</h2>
           <table className="history-table">
             <thead>
               <tr>
-                <th>Date</th>
-                <th>Engines</th>
-                <th>Scenarios</th>
-                <th>Runs</th>
+                <th>{t('benchmark.historyDate')}</th>
+                <th>{t('benchmark.historyEngines')}</th>
+                <th>{t('benchmark.historyScenarios')}</th>
+                <th>{t('benchmark.historyRuns')}</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               {history.map((run) => (
                 <tr key={run._id}>
-                  <td>{new Date(run.createdAt).toLocaleString('ru')}</td>
+                  <td>{new Date(run.createdAt).toLocaleString(locale)}</td>
                   <td>{run.engines.join(', ')}</td>
                   <td>{run.scenarios.join(', ')}</td>
                   <td>{run.runs}</td>
                   <td>
                     <button className="btn-ghost" onClick={() => setCurrentRun(run)}>
-                      show
+                      {t('benchmark.show')}
                     </button>
                   </td>
                 </tr>

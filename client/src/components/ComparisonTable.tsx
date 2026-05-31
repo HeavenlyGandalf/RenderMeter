@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import type { BenchmarkRun, TemplateEngine, EngineMetrics } from '../types';
 import { ENGINE_COLORS } from '../constants';
 
@@ -11,6 +12,8 @@ function fastest(engines: Partial<Record<TemplateEngine, EngineMetrics>>): strin
 }
 
 export default function ComparisonTable({ run }: Props) {
+  const { t } = useTranslation();
+
   return (
     <div className="comparison-wrap">
       {run.results.map(({ scenario, engines }) => {
@@ -20,20 +23,20 @@ export default function ComparisonTable({ run }: Props) {
             <h3 className="scenario-title">
               <span className="scenario-badge">{scenario}</span>
               <span className="scenario-winner">
-                {fastestEngine} fastest
+                {t('comparison.fastest', { engine: fastestEngine })}
               </span>
             </h3>
 
             <table className="results-table">
               <thead>
                 <tr>
-                  <th>Engine</th>
-                  <th>Avg (ms)</th>
-                  <th>Median (ms)</th>
-                  <th>Min (ms)</th>
-                  <th>Max (ms)</th>
-                  <th>Compile (ms)</th>
-                  <th>vs fastest</th>
+                  <th>{t('comparison.colEngine')}</th>
+                  <th>{t('comparison.colAvg')}</th>
+                  <th>{t('comparison.colMedian')}</th>
+                  <th>{t('comparison.colMin')}</th>
+                  <th>{t('comparison.colMax')}</th>
+                  <th>{t('comparison.colCompile')}</th>
+                  <th>{t('comparison.colVsFastest')}</th>
                 </tr>
               </thead>
               <tbody>

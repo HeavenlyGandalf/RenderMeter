@@ -1,0 +1,98 @@
+{
+  "sidebar": {
+    "subtitle": "Лаборатория шаблонизаторов",
+    "nav": "Навигация",
+    "footer": "v0.1 · Node.js"
+  },
+  "nav": {
+    "benchmark": "Бенчмарк",
+    "benchmarkSub": "Сравнение движков",
+    "playground": "Песочница",
+    "playgroundSub": "Одиночный движок"
+  },
+  "benchmark": {
+    "title": "Бенчмарк",
+    "subtitle": "Сравните производительность рендеринга нескольких шаблонизаторов и сценариев",
+    "runsPerScenario": "Запусков на сценарий",
+    "runsOption": "{{count}} запусков",
+    "runAll": "Запустить все бенчмарки",
+    "running": "Выполняется…",
+    "errorSelect": "Выберите хотя бы один движок и один сценарий",
+    "resultsHeading": "Результаты — {{runs}} запусков · {{date}}",
+    "chartHeading": "График — среднее время рендера (мс)",
+    "history": "История",
+    "show": "показать",
+    "historyDate": "Дата",
+    "historyEngines": "Движки",
+    "historyScenarios": "Сценарии",
+    "historyRuns": "Запуски"
+  },
+  "playground": {
+    "title": "Песочница",
+    "subtitle": "Пишите, рендерьте и замеряйте шаблоны в реальном времени",
+    "serverBadge": "Рендер на сервере (Node.js)"
+  },
+  "runner": {
+    "run": "Запустить",
+    "running": "Выполняется…"
+  },
+  "engines": {
+    "label": "Движки",
+    "selectLabel": "Шаблонизатор"
+  },
+  "scenarios": {
+    "label": "Сценарии",
+    "simple": "5 элементов",
+    "medium": "100 элементов + пользователи",
+    "heavy": "500 элементов + отделы",
+    "extreme": "1000 элементов + глубокая вложенность"
+  },
+  "comparison": {
+    "fastest": "{{engine}} быстрее всех",
+    "colEngine": "Движок",
+    "colAvg": "Среднее (мс)",
+    "colMedian": "Медиана (мс)",
+    "colMin": "Мин (мс)",
+    "colMax": "Макс (мс)",
+    "colCompile": "Компиляция (мс)",
+    "colVsFastest": "к быстрейшему"
+  },
+  "summary": {
+    "heading": "Сводка",
+    "winner": "{{scenario}}: {{engine}} быстрее всех — {{avg}} мс в среднем, {{slowest}} медленнее в ×{{ratio}}",
+    "variance": "{{engine}} в сценарии {{scenario}}: высокая дисперсия (мин {{min}} мс → макс {{max}} мс, разброс ×{{spread}}) — уменьшите фоновую нагрузку или увеличьте прогрев",
+    "overall": "Итого: {{winner}} побеждает в {{count}}/{{total}} сценариях"
+  },
+  "templates": {
+    "toggleLabel": "Шаблоны для бенчмарков",
+    "loading": "Загрузка…",
+    "note": "Все движки получают одинаковые данные — различается только синтаксис. Данные: <code>title</code>, <code>description</code>, <code>items[]</code>, <code>users[]</code> и опционально <code>departments[]</code> (сценарии heavy / extreme)."
+  },
+  "scenarioData": {
+    "toggleLabel": "Данные сценариев",
+    "customBadge": "кастомные данные",
+    "loading": "Загрузка данных…",
+    "customToggle": "Использовать кастомные данные для запуска",
+    "customNote": "Отредактируйте JSON ниже. Изменённые данные будут использованы вместо встроенных данных сценария. Переключитесь на другую вкладку, чтобы начать с данных другого сценария.",
+    "parseError": "Ошибка JSON — исправьте данные для применения"
+  },
+  "history": {
+    "loading": "Загрузка…",
+    "empty": "Нет запусков — начните первый бенчмарк!",
+    "colEngine": "Движок",
+    "colTime": "Время (мс)",
+    "colSize": "Размер (симв.)",
+    "colDate": "Дата"
+  },
+  "preview": {
+    "heading": "Превью"
+  },
+  "error": {
+    "dismiss": "Закрыть ошибку"
+  },
+  "lang": {
+    "en": "EN",
+    "ru": "RU",
+    "fr": "FR"
+  }
+}

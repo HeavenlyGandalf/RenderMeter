@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import Editor from '@monaco-editor/react';
 import { ENGINES } from '../constants';
 import type { TemplateEngine } from '../types';
 import { fetchTemplates } from '../api/benchmark';
 
-// Monaco не знает синтаксис handlebars/mustache/pug — используем ближайшие аналоги
 const LANG_MAP: Record<TemplateEngine, string> = {
   handlebars: 'html',
   mustache: 'html',
-  pug: 'python', // отступы похожи; 'jade' не всегда доступен в bundled Monaco
+  pug: 'python',
   ejs: 'html',
 };
 
 export default function TemplateViewer() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [templates, setTemplates] = useState<Record<string, string> | null>(null);
   const [engine, setEngine] = useState<TemplateEngine>('handlebars');
@@ -31,12 +32,11 @@ export default function TemplateViewer() {
     <div className="card template-viewer-card">
       <button className="toggle-templates" onClick={() => setOpen((o) => !o)}>
         <span className="toggle-icon">{open ? '−' : '+'}</span>
-        Templates used in benchmarks
+        {t('templates.toggleLabel')}
       </button>
 
       {open && (
         <div className="template-viewer">
-          {/* Engine tabs */}
           <div className="engine-tabs">
             {ENGINES.map((e) => (
               <button
@@ -49,9 +49,8 @@ export default function TemplateViewer() {
             ))}
           </div>
 
-          {/* Template editor — read-only */}
           {loading ? (
-            <p className="muted" style={{ padding: '0.75rem 0' }}>Loading…</p>
+            <p className="muted" style={{ padding: '0.75rem 0' }}>{t('templates.loading')}</p>
           ) : templates ? (
             <div className="editor-wrap">
               <Editor
@@ -72,9 +71,10 @@ export default function TemplateViewer() {
             </div>
           ) : null}
 
-          <p className="template-note">
-            All engines receive identical data — only syntax differs. Data: <code>title</code>, <code>description</code>, <code>items[]</code>, <code>users[]</code>, and optional <code>departments[]</code> (heavy / extreme scenarios).
-          </p>
+          <p
+            className="template-note"
+            dangerouslySetInnerHTML={{ __html: t('templates.note') }}
+          />
         </div>
       )}
     </div>
