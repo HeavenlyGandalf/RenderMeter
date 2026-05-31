@@ -53,8 +53,10 @@ export default function BenchmarkPage() {
       </div>
 
       <div className="card controls">
-        <EngineMultiSelect selected={engines} onChange={setEngines} disabled={isPending} />
-        <ScenarioSelector selected={scenarios} onChange={setScenarios} disabled={isPending} />
+        <div className="card--header">
+          <EngineMultiSelect selected={engines} onChange={setEngines} disabled={isPending} />
+          <ScenarioSelector selected={scenarios} onChange={setScenarios} disabled={isPending} />
+        </div>
 
         <div className="field">
           <label htmlFor="runs-select">{t('benchmark.runsPerScenario')}</label>
