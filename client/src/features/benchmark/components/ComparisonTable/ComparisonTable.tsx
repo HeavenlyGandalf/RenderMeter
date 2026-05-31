@@ -5,7 +5,7 @@ import { ENGINE_COLORS } from '../../../../shared/constants';
 
 function fastest(engines: Partial<Record<TemplateEngine, EngineMetrics>>): string {
   const entries = Object.entries(engines) as [TemplateEngine, EngineMetrics][];
-  return entries.reduce((a, b) => (a[1].avg < b[1].avg ? a : b))[0];
+  return entries.reduce((a, b) => ((a[1].avg ?? Infinity) < (b[1].avg ?? Infinity) ? a : b))[0];
 }
 
 export default function ComparisonTable({ run }: { run: BenchmarkRun }) {
@@ -37,19 +37,20 @@ export default function ComparisonTable({ run }: { run: BenchmarkRun }) {
                 {(Object.entries(engines) as [TemplateEngine, EngineMetrics][])
                   .sort((a, b) => a[1].avg - b[1].avg)
                   .map(([engine, m]) => {
-                    const ratio = m.avg / engines[fastestEngine as TemplateEngine]!.avg;
+                    const fastestAvg = engines[fastestEngine as TemplateEngine]?.avg;
+                    const ratio = fastestAvg ? (m.avg ?? 0) / fastestAvg : null;
                     return (
                       <tr key={engine} className={engine === fastestEngine ? 'fastest' : ''}>
                         <td>
                           <span className="engine-dot" style={{ background: ENGINE_COLORS[engine] }} />
                           {engine}
                         </td>
-                        <td><strong>{m.avg.toFixed(3)}</strong></td>
-                        <td>{m.median.toFixed(3)}</td>
-                        <td>{m.min.toFixed(3)}</td>
-                        <td>{m.max.toFixed(3)}</td>
-                        <td>{m.compileMs.toFixed(3)}</td>
-                        <td>{engine === fastestEngine ? '—' : `×${ratio.toFixed(2)}`}</td>
+                        <td><strong>{m.avg?.toFixed(3) ?? '—'}</strong></td>
+                        <td>{m.median?.toFixed(3) ?? '—'}</td>
+                        <td>{m.min?.toFixed(3) ?? '—'}</td>
+                        <td>{m.max?.toFixed(3) ?? '—'}</td>
+                        <td>{m.compileMs?.toFixed(3) ?? '—'}</td>
+                        <td>{engine === fastestEngine || ratio === null ? '—' : `×${ratio.toFixed(2)}`}</td>
                       </tr>
                     );
                   })}
