@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { TemplateEngine, Scenario } from '../../shared/types';
 import { ENGINES, SCENARIOS, RUNS_OPTIONS } from '../../shared/constants';
@@ -43,7 +44,12 @@ export default function BenchmarkPage() {
     <main className="page">
       <div className="page-header">
         <div className="page-title">{t('benchmark.title')}</div>
-        <div className="page-subtitle">{t('benchmark.subtitle')}</div>
+        <div className="page-subtitle">
+          {t('benchmark.subtitle')}{' — '}
+          <Link to="/docs" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: 'inherit' }}>
+            {t('docs.title')} →
+          </Link>
+        </div>
       </div>
 
       <div className="card controls">

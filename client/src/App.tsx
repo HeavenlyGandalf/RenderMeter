@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Sidebar from './shared/components/Sidebar/Sidebar';
 import BenchmarkPage from './features/benchmark/BenchmarkPage';
 import PlaygroundPage from './features/playground/PlaygroundPage';
+import DocsPage from './features/docs/DocsPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,6 +24,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<BenchmarkPage />} />
               <Route path="/playground" element={<PlaygroundPage />} />
+              <Route path="/docs" element={<DocsPage />} />
             </Routes>
           </div>
         </div>

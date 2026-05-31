@@ -8,7 +8,9 @@
     "benchmark": "Benchmark",
     "benchmarkSub": "Multi-engine comparison",
     "playground": "Playground",
-    "playgroundSub": "Single-engine sandbox"
+    "playgroundSub": "Single-engine sandbox",
+    "docs": "Docs",
+    "docsSub": "Engine reference"
   },
   "benchmark": {
     "title": "Benchmark",
@@ -103,5 +105,64 @@
     "en": "EN",
     "ru": "RU",
     "fr": "FR"
+  },
+  "docs": {
+    "title": "Engine Docs",
+    "subtitle": "Quick reference for every template engine supported by RenderMeter",
+    "intro": "Each engine below is available in both",
+    "introOr": "and",
+    "officialDocs": "Official docs",
+    "features": "Key features",
+    "syntax": "Syntax examples",
+    "engines": {
+      "handlebars": {
+        "description": "Handlebars extends Mustache with helpers, partials, and block expressions. Templates are pre-compiled to JavaScript functions, which gives it a strong advantage in repeated-render scenarios.",
+        "features": [
+          "Pre-compiles templates to JS functions (cache-friendly)",
+          "Custom helpers: {{myHelper arg1 arg2}}",
+          "Block helpers: {{#each}}, {{#if}}, {{#with}}",
+          "Partials and partial blocks for layout reuse",
+          "Strict / no-prototype-access safety modes"
+        ],
+        "perfLabel": "Fast — compiled",
+        "perfNote": "Compile once, render many times"
+      },
+      "mustache": {
+        "description": "The original logic-less template language. Zero conditionals or loops in the traditional sense — sections double as both truthiness checks and iterators. Available in 40+ languages.",
+        "features": [
+          "Truly logic-less: no arbitrary JS in templates",
+          "{{#section}} acts as both if and each",
+          "{{^section}} inverted / falsy section",
+          "Triple-stache {{{html}}} for unescaped output",
+          "Partials via {{> partial}}"
+        ],
+        "perfLabel": "Fast — lightweight",
+        "perfNote": "Minimal overhead, great for simple templates"
+      },
+      "pug": {
+        "description": "Pug (formerly Jade) uses indentation instead of closing tags and allows inline JavaScript. Its compile step produces a JS function — but the indentation parser adds overhead on first use.",
+        "features": [
+          "Indentation-based syntax — no closing tags",
+          "Full inline JavaScript expressions",
+          "Mixins for reusable blocks",
+          "Template inheritance (extends / block)",
+          "Server-side only (Node.js)"
+        ],
+        "perfLabel": "Medium — heavier parse",
+        "perfNote": "Compile step is more expensive than Handlebars"
+      },
+      "ejs": {
+        "description": "Embedded JavaScript — standard HTML with <% %> scriptlets. The shortest learning curve for anyone familiar with PHP or JSP. Full Node.js runtime available inside templates.",
+        "features": [
+          "<%= expr %> — escaped output",
+          "<%- expr %> — raw / unescaped HTML",
+          "<% code %> — arbitrary JavaScript",
+          "<%# comment %> — stripped at render time",
+          "include() for partials, Server-side only"
+        ],
+        "perfLabel": "Fast — simple tags",
+        "perfNote": "Near-native JS performance for logic"
+      }
+    }
   }
 }

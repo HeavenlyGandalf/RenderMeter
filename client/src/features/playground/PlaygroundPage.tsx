@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Handlebars from 'handlebars';
 import Mustache from 'mustache';
@@ -80,7 +81,12 @@ export default function PlaygroundPage() {
     <main className="page">
       <div className="page-header">
         <div className="page-title">{t('playground.title')}</div>
-        <div className="page-subtitle">{t('playground.subtitle')}</div>
+        <div className="page-subtitle">
+          {t('playground.subtitle')}{' — '}
+          <Link to="/docs" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: 'inherit' }}>
+            {t('docs.title')} →
+          </Link>
+        </div>
       </div>
 
       <div className="card controls">

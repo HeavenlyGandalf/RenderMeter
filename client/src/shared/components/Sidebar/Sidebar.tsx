@@ -20,12 +20,24 @@ function PlaygroundIcon() {
   );
 }
 
+function DocsIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+      <line x1="9" y1="7" x2="15" y2="7" />
+      <line x1="9" y1="11" x2="15" y2="11" />
+    </svg>
+  );
+}
+
 export default function Sidebar() {
   const { t } = useTranslation();
 
   const NAV_ITEMS = [
     { to: '/', end: true,  icon: <BenchmarkIcon />,  label: t('nav.benchmark'),  sub: t('nav.benchmarkSub') },
     { to: '/playground', end: false, icon: <PlaygroundIcon />, label: t('nav.playground'), sub: t('nav.playgroundSub') },
+    { to: '/docs', end: false, icon: <DocsIcon />, label: t('nav.docs'), sub: t('nav.docsSub') },
   ];
 
   return (

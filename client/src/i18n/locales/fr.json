@@ -8,7 +8,9 @@
     "benchmark": "Benchmark",
     "benchmarkSub": "Comparaison multi-moteur",
     "playground": "Bac à sable",
-    "playgroundSub": "Moteur unique"
+    "playgroundSub": "Moteur unique",
+    "docs": "Docs",
+    "docsSub": "Référence moteurs"
   },
   "benchmark": {
     "title": "Benchmark",
@@ -103,5 +105,64 @@
     "en": "EN",
     "ru": "RU",
     "fr": "FR"
+  },
+  "docs": {
+    "title": "Documentation",
+    "subtitle": "Référence rapide pour chaque moteur de template pris en charge par RenderMeter",
+    "intro": "Chaque moteur ci-dessous est disponible dans",
+    "introOr": "et dans",
+    "officialDocs": "Docs officielles",
+    "features": "Fonctionnalités clés",
+    "syntax": "Exemples de syntaxe",
+    "engines": {
+      "handlebars": {
+        "description": "Handlebars étend Mustache avec des helpers, des partiels et des expressions de bloc. Les templates sont pré-compilés en fonctions JavaScript, ce qui lui confère un avantage certain dans les scénarios de rendu répété.",
+        "features": [
+          "Pré-compilation en fonctions JS (compatible cache)",
+          "Helpers personnalisés : {{myHelper arg1 arg2}}",
+          "Helpers de bloc : {{#each}}, {{#if}}, {{#with}}",
+          "Partiels et partiels de bloc pour la réutilisation",
+          "Modes strict et no-prototype-access pour la sécurité"
+        ],
+        "perfLabel": "Rapide — compilé",
+        "perfNote": "Compiler une fois, rendre plusieurs fois"
+      },
+      "mustache": {
+        "description": "Le langage de template sans logique original. Pas de conditionnels ni de boucles au sens traditionnel — les sections servent à la fois de vérification de véracité et d'itérateur. Disponible en 40+ langages.",
+        "features": [
+          "Vraiment sans logique : pas de JS dans les templates",
+          "{{#section}} agit comme if et each à la fois",
+          "{{^section}} — section inversée / fausse",
+          "{{{html}}} — sortie non échappée",
+          "Partiels via {{> partial}}"
+        ],
+        "perfLabel": "Rapide — léger",
+        "perfNote": "Surcharge minimale, idéal pour les templates simples"
+      },
+      "pug": {
+        "description": "Pug (anciennement Jade) utilise l'indentation plutôt que les balises fermantes et permet du JavaScript inline. L'étape de compilation produit une fonction JS, mais le parseur d'indentation ajoute de la surcharge.",
+        "features": [
+          "Syntaxe basée sur l'indentation — pas de balises fermantes",
+          "Expressions JavaScript complètes en ligne",
+          "Mixins pour les blocs réutilisables",
+          "Héritage de templates (extends / block)",
+          "Côté serveur uniquement (Node.js)"
+        ],
+        "perfLabel": "Moyen — parsing lourd",
+        "perfNote": "Compilation plus coûteuse que Handlebars"
+      },
+      "ejs": {
+        "description": "Embedded JavaScript — HTML standard avec des balises <% %>. La courbe d'apprentissage la plus courte pour les développeurs PHP ou JSP. Accès complet au runtime Node.js dans les templates.",
+        "features": [
+          "<%= expr %> — sortie échappée",
+          "<%- expr %> — HTML brut non échappé",
+          "<% code %> — JavaScript arbitraire",
+          "<%# comment %> — supprimé au rendu",
+          "include() pour les partiels, côté serveur uniquement"
+        ],
+        "perfLabel": "Rapide — balises simples",
+        "perfNote": "Performances proches du JS natif"
+      }
+    }
   }
 }
