@@ -10,21 +10,29 @@ import EngineSelector from './components/EngineSelector/EngineSelector';
 import HistoryList from './components/HistoryList/HistoryList';
 import PreviewPanel from './components/PreviewPanel/PreviewPanel';
 import ErrorMessage from '../../shared/components/ErrorMessage/ErrorMessage';
-import TemplateEditor from './components/TemplateEditor/TemplateEditor';
+import EditorTabs from './components/EditorTabs/EditorTabs';
 import BenchmarkRunner from './components/BenchmarkRunner/BenchmarkRunner';
 
-const SAMPLE_DATA = {
-  title: 'RenderMeter',
-  items: ['Apple', 'Banana', 'Cherry'],
-  user: { name: 'Developer', active: true },
-};
+const DEFAULT_DATA = JSON.stringify(
+  { title: 'RenderMeter', items: ['Apple', 'Banana', 'Cherry'], user: { name: 'Developer', active: true } },
+  null,
+  2,
+);
 
-function renderClientSide(engine: TemplateEngine, template: string): RenderResult {
+function parseData(raw: string): Record<string, unknown> | null {
+  try { return JSON.parse(raw); } catch { return null; }
+}
+
+function renderClientSide(
+  engine: TemplateEngine,
+  template: string,
+  data: Record<string, unknown>,
+): RenderResult {
   const start = performance.now();
   let html: string;
   switch (engine) {
-    case 'handlebars': html = Handlebars.compile(template)(SAMPLE_DATA); break;
-    case 'mustache':   html = Mustache.render(template, SAMPLE_DATA); break;
+    case 'handlebars': html = Handlebars.compile(template)(data); break;
+    case 'mustache':   html = Mustache.render(template, data); break;
     default: throw new Error(`Not a client-side engine: ${engine}`);
   }
   return { html, executionTimeMs: Math.round((performance.now() - start) * 1000) / 1000 };
@@ -34,6 +42,7 @@ export default function PlaygroundPage() {
   const { t } = useTranslation();
   const [engine, setEngine] = useState<TemplateEngine>('handlebars');
   const [template, setTemplate] = useState(DEFAULT_TEMPLATES['handlebars']);
+  const [contextRaw, setContextRaw] = useState(DEFAULT_DATA);
   const [result, setResult] = useState<RenderResult | null>(null);
   const [error, setError] = useState('');
 
@@ -42,6 +51,7 @@ export default function PlaygroundPage() {
   const { data: history = [], isLoading: historyLoading } = usePlaygroundHistory();
 
   const isRunning = isServerPending;
+  const dataError = parseData(contextRaw) === null ? t('playground.dataJsonError') : undefined;
 
   function handleEngineChange(next: TemplateEngine) {
     setEngine(next);
@@ -54,8 +64,14 @@ export default function PlaygroundPage() {
     if (isRunning) return;
     setError('');
 
+    const data = parseData(contextRaw);
+    if (!data) {
+      setError(t('playground.dataJsonError'));
+      return;
+    }
+
     if (SERVER_ENGINES.includes(engine)) {
-      serverRender({ engine, template }, {
+      serverRender({ engine, template, data }, {
         onSuccess: (rendered) => {
           setResult(rendered);
           saveResult({ templateEngine: engine, executionTimeMs: rendered.executionTimeMs, templateSize: template.length });
@@ -67,7 +83,7 @@ export default function PlaygroundPage() {
       });
     } else {
       try {
-        const rendered = renderClientSide(engine, template);
+        const rendered = renderClientSide(engine, template, data);
         setResult(rendered);
         saveResult({ templateEngine: engine, executionTimeMs: rendered.executionTimeMs, templateSize: template.length });
       } catch (err) {
@@ -96,7 +112,13 @@ export default function PlaygroundPage() {
             <span className="badge-note">{t('playground.serverBadge')}</span>
           )}
         </div>
-        <TemplateEditor value={template} onChange={setTemplate} />
+        <EditorTabs
+          template={template}
+          onTemplateChange={setTemplate}
+          data={contextRaw}
+          onDataChange={setContextRaw}
+          dataError={dataError}
+        />
         <BenchmarkRunner isRunning={isRunning} executionTimeMs={result?.executionTimeMs ?? null} onRun={handleRun} />
         {error && <ErrorMessage message={error} onDismiss={() => setError('')} />}
       </div>

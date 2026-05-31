@@ -33,7 +33,10 @@
     "title": "Playground",
     "subtitle": "Write, render and time single templates interactively",
     "serverBadge": "Renders on server (Node.js)",
-    "templateLabel": "Template"
+    "templateLabel": "Template",
+    "tabTemplate": "Template",
+    "tabData": "Data",
+    "dataJsonError": "Invalid JSON — fix the data to render"
   },
   "chart": {
     "yAxis": "avg render time (ms)"

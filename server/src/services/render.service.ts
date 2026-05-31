@@ -1,8 +1,7 @@
 import pug from 'pug';
 import ejs from 'ejs';
 
-// Те же тестовые данные, что и на клиенте
-const sampleData = {
+const defaultData = {
   title: 'RenderMeter',
   items: ['Apple', 'Banana', 'Cherry'],
   user: { name: 'Developer', active: true },
@@ -13,17 +12,22 @@ export interface RenderResult {
   executionTimeMs: number;
 }
 
-export function renderTemplate(engine: string, template: string): RenderResult {
+export function renderTemplate(
+  engine: string,
+  template: string,
+  data?: Record<string, unknown>,
+): RenderResult {
+  const ctx = data ?? defaultData;
   const start = performance.now();
   let html: string;
 
   switch (engine) {
     case 'pug':
-      html = pug.render(template, sampleData);
+      html = pug.render(template, ctx);
       break;
 
     case 'ejs':
-      html = ejs.render(template, sampleData);
+      html = ejs.render(template, ctx);
       break;
 
     default:

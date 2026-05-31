@@ -26,8 +26,12 @@ async function postResult(payload: SavePayload): Promise<SavedResult> {
   return res.data;
 }
 
-async function postRender(engine: TemplateEngine, template: string): Promise<RenderResult> {
-  const res = await api.post<RenderResult>('/render', { engine, template });
+async function postRender(
+  engine: TemplateEngine,
+  template: string,
+  data?: Record<string, unknown>,
+): Promise<RenderResult> {
+  const res = await api.post<RenderResult>('/render', { engine, template, data });
   return res.data;
 }
 
@@ -57,7 +61,14 @@ export function useSaveResult() {
 
 export function useServerRender() {
   return useMutation({
-    mutationFn: ({ engine, template }: { engine: TemplateEngine; template: string }) =>
-      postRender(engine, template),
+    mutationFn: ({
+      engine,
+      template,
+      data,
+    }: {
+      engine: TemplateEngine;
+      template: string;
+      data?: Record<string, unknown>;
+    }) => postRender(engine, template, data),
   });
 }

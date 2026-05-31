@@ -1,0 +1,61 @@
+.container { display: flex; flex-direction: column; }
+
+.tabs {
+  display: flex;
+  gap: 2px;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.38rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+  position: relative;
+  bottom: -1px;
+  z-index: 1;
+}
+
+.tab:hover { color: var(--text-dim); background: var(--surface-3); }
+
+.tab.active {
+  color: var(--accent);
+  background: var(--surface);
+  border-color: var(--border-bright);
+  border-bottom-color: var(--surface);
+}
+
+.editorWrap {
+  border: 1px solid var(--border-bright);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) var(--radius-sm);
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+.errorDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+.dataError {
+  font-size: 0.71rem;
+  color: var(--red);
+  padding: 0.35rem 0.75rem;
+  background: var(--red-dim);
+  border: 1px solid var(--border-bright);
+  border-top: 1px solid var(--red);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  font-family: var(--font-mono);
+}

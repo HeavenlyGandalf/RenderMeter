@@ -33,7 +33,10 @@
     "title": "Bac à sable",
     "subtitle": "Écrivez, rendez et chronométrez vos templates en temps réel",
     "serverBadge": "Rendu côté serveur (Node.js)",
-    "templateLabel": "Template"
+    "templateLabel": "Template",
+    "tabTemplate": "Template",
+    "tabData": "Données",
+    "dataJsonError": "JSON invalide — corrigez les données pour le rendu"
   },
   "chart": {
     "yAxis": "temps de rendu moyen (ms)"
