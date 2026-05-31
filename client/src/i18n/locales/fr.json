@@ -64,12 +64,19 @@
   "comparison": {
     "fastest": "{{engine}} le plus rapide",
     "colEngine": "Moteur",
+    "colEngTip": "Moteur de template utilisé pour le rendu",
     "colAvg": "Moy. (ms)",
+    "colAvgTip": "Temps de rendu moyen sur toutes les exécutions",
     "colMedian": "Médiane (ms)",
+    "colMedianTip": "Valeur centrale de toutes les exécutions — moins sensible aux valeurs extrêmes que la moyenne",
     "colMin": "Min (ms)",
+    "colMinTip": "Temps de rendu le plus rapide enregistré",
     "colMax": "Max (ms)",
+    "colMaxTip": "Temps de rendu le plus lent enregistré",
     "colCompile": "Compilation (ms)",
-    "colVsFastest": "vs le plus rapide"
+    "colCompileTip": "Coût unique de compilation du template en fonction (non inclus dans les temps de rendu)",
+    "colVsFastest": "vs le plus rapide",
+    "colVsFastestTip": "Combien de fois ce moteur est plus lent que le plus rapide dans ce scénario"
   },
   "summary": {
     "heading": "Synthèse",
@@ -94,9 +101,13 @@
     "loading": "Chargement…",
     "empty": "Aucune exécution — lancez votre premier benchmark !",
     "colEngine": "Moteur",
+    "colEngTip": "Moteur de template utilisé pour ce rendu",
     "colTime": "Temps (ms)",
+    "colTimeTip": "Temps total d'exécution du rendu en millisecondes",
     "colSize": "Taille (car.)",
-    "colDate": "Date"
+    "colSizeTip": "Nombre de caractères dans la source du template",
+    "colDate": "Date",
+    "colDateTip": "Date et heure d'exécution de ce rendu"
   },
   "preview": {
     "heading": "Aperçu"

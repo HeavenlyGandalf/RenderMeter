@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import s from './ComparisonTable.module.css';
 import type { BenchmarkRun, TemplateEngine, EngineMetrics } from '../../../../shared/types';
 import { ENGINE_COLORS } from '../../../../shared/constants';
+import ThTooltip from '../../../../shared/components/ThTooltip/ThTooltip';
 
 function fastest(engines: Partial<Record<TemplateEngine, EngineMetrics>>): string {
   const entries = Object.entries(engines) as [TemplateEngine, EngineMetrics][];
@@ -24,13 +25,13 @@ export default function ComparisonTable({ run }: { run: BenchmarkRun }) {
             <table className="results-table">
               <thead>
                 <tr>
-                  <th>{t('comparison.colEngine')}</th>
-                  <th>{t('comparison.colAvg')}</th>
-                  <th>{t('comparison.colMedian')}</th>
-                  <th>{t('comparison.colMin')}</th>
-                  <th>{t('comparison.colMax')}</th>
-                  <th>{t('comparison.colCompile')}</th>
-                  <th>{t('comparison.colVsFastest')}</th>
+                  <ThTooltip label={t('comparison.colEngine')} tip={t('comparison.colEngTip')} />
+                  <ThTooltip label={t('comparison.colAvg')} tip={t('comparison.colAvgTip')} />
+                  <ThTooltip label={t('comparison.colMedian')} tip={t('comparison.colMedianTip')} />
+                  <ThTooltip label={t('comparison.colMin')} tip={t('comparison.colMinTip')} />
+                  <ThTooltip label={t('comparison.colMax')} tip={t('comparison.colMaxTip')} />
+                  <ThTooltip label={t('comparison.colCompile')} tip={t('comparison.colCompileTip')} />
+                  <ThTooltip label={t('comparison.colVsFastest')} tip={t('comparison.colVsFastestTip')} />
                 </tr>
               </thead>
               <tbody>

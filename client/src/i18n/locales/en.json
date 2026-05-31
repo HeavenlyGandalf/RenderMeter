@@ -64,12 +64,19 @@
   "comparison": {
     "fastest": "{{engine}} fastest",
     "colEngine": "Engine",
+    "colEngTip": "Template engine used for rendering",
     "colAvg": "Avg (ms)",
+    "colAvgTip": "Mean render time across all runs",
     "colMedian": "Median (ms)",
+    "colMedianTip": "Middle value of all run times — less affected by outliers than the mean",
     "colMin": "Min (ms)",
+    "colMinTip": "Fastest single render time recorded",
     "colMax": "Max (ms)",
+    "colMaxTip": "Slowest single render time recorded",
     "colCompile": "Compile (ms)",
-    "colVsFastest": "vs fastest"
+    "colCompileTip": "One-time cost to compile the template to a function (not included in render times)",
+    "colVsFastest": "vs fastest",
+    "colVsFastestTip": "How many times slower this engine is compared to the fastest one in this scenario"
   },
   "summary": {
     "heading": "Summary",
@@ -94,9 +101,13 @@
     "loading": "Loading…",
     "empty": "No runs yet — start your first benchmark!",
     "colEngine": "Engine",
+    "colEngTip": "Template engine used for this render",
     "colTime": "Time (ms)",
+    "colTimeTip": "Total render execution time in milliseconds",
     "colSize": "Size (chars)",
-    "colDate": "Date"
+    "colSizeTip": "Number of characters in the template source",
+    "colDate": "Date",
+    "colDateTip": "Date and time when this render was executed"
   },
   "preview": {
     "heading": "Preview"

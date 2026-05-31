@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import s from './HistoryList.module.css';
 import type { SavedResult } from '../../../../shared/types';
 import { formatDateTime } from '../../../../shared/lib/datetime';
+import ThTooltip from '../../../../shared/components/ThTooltip/ThTooltip';
 
 interface Props {
   history: SavedResult[];
@@ -18,10 +19,10 @@ export default function HistoryList({ history, isLoading }: Props) {
     <table className={s.table}>
       <thead>
         <tr>
-          <th>{t('history.colEngine')}</th>
-          <th>{t('history.colTime')}</th>
-          <th>{t('history.colSize')}</th>
-          <th>{t('history.colDate')}</th>
+          <ThTooltip label={t('history.colEngine')} tip={t('history.colEngTip')} />
+          <ThTooltip label={t('history.colTime')} tip={t('history.colTimeTip')} />
+          <ThTooltip label={t('history.colSize')} tip={t('history.colSizeTip')} />
+          <ThTooltip label={t('history.colDate')} tip={t('history.colDateTip')} />
         </tr>
       </thead>
       <tbody>
