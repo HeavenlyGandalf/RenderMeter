@@ -98,7 +98,25 @@ RenderMeter запускает одинаковые тесты для четыр
 
 ## Быстрый запуск
 
+**1. MongoDB (Docker):**
+
 ```bash
-docker start mongo >/dev/null 2>&1 || docker run -d --name mongo -p 27017:27017 mongo:7 && \
-cd server && npm install && npm run dev & \
-cd ../client && npm install && npm run dev
+docker start mongo 2>/dev/null || docker run -d --name mongo -p 27017:27017 mongo:7
+```
+
+**2. Backend** (отдельный терминал):
+
+```bash
+cd server
+cp .env.example .env   # при первом запуске
+npm install
+npm run dev
+```
+
+**3. Frontend** (отдельный терминал):
+
+```bash
+cd client
+npm install
+npm run dev
+```

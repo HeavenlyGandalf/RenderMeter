@@ -11,6 +11,7 @@ import SummaryBlock from './components/SummaryBlock/SummaryBlock';
 import TemplateViewer from './components/TemplateViewer/TemplateViewer';
 import ScenarioDataViewer from './components/ScenarioDataViewer/ScenarioDataViewer';
 import ErrorMessage from '../../shared/components/ErrorMessage/ErrorMessage';
+import { formatDateTime } from '../../shared/lib/datetime';
 
 export default function BenchmarkPage() {
   const { t, i18n } = useTranslation();
@@ -22,8 +23,6 @@ export default function BenchmarkPage() {
 
   const { data: history = [] } = useBenchmarkHistory();
   const { mutate: runBenchmark, isPending, error: mutationError, reset } = useBenchmarkRun();
-
-  const locale = i18n.language === 'ru' ? 'ru-RU' : i18n.language === 'fr' ? 'fr-FR' : 'en-US';
 
   const currentRun = activeRunId
     ? history.find((r) => r._id === activeRunId) ?? history[0]
@@ -80,7 +79,7 @@ export default function BenchmarkPage() {
           <div className="card">
             <h2>{t('benchmark.resultsHeading', {
               runs: currentRun.runs,
-              date: new Date(currentRun.createdAt).toLocaleString(locale),
+              date: formatDateTime(currentRun.createdAt, i18n.language),
             })}</h2>
             <ComparisonTable run={currentRun} />
           </div>
@@ -112,7 +111,7 @@ export default function BenchmarkPage() {
             <tbody>
               {history.map((run) => (
                 <tr key={run._id} className={run._id === currentRun?._id ? 'row-active' : ''}>
-                  <td>{new Date(run.createdAt).toLocaleString(locale)}</td>
+                  <td>{formatDateTime(run.createdAt, i18n.language)}</td>
                   <td>{run.engines.join(', ')}</td>
                   <td>{run.scenarios.join(', ')}</td>
                   <td>{run.runs}</td>

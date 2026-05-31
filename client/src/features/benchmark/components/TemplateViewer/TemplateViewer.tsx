@@ -26,9 +26,16 @@ export default function TemplateViewer() {
 
       {open && (
         <div className={s.body}>
-          <div className="engine-tabs">
+          <div className="engine-tabs" role="tablist">
             {ENGINES.map((e) => (
-              <button key={e} className={`tab-btn ${engine === e ? 'active' : ''}`} onClick={() => setEngine(e)}>
+              <button
+                key={e}
+                type="button"
+                role="tab"
+                aria-selected={engine === e}
+                className={`tab-btn ${engine === e ? 'active' : ''}`}
+                onClick={() => setEngine(e)}
+              >
                 {e}
               </button>
             ))}

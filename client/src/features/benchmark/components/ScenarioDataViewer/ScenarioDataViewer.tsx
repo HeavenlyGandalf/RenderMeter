@@ -65,9 +65,16 @@ export default function ScenarioDataViewer({ onCustomDataChange }: Props) {
 
           {!isLoading && scenarioData && (
             <>
-              <div className="engine-tabs">
+              <div className="engine-tabs" role="tablist">
                 {SCENARIOS.map((sc) => (
-                  <button key={sc} className={`tab-btn ${activeTab === sc ? 'active' : ''}`} onClick={() => setActiveTab(sc)}>
+                  <button
+                    key={sc}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeTab === sc}
+                    className={`tab-btn ${activeTab === sc ? 'active' : ''}`}
+                    onClick={() => setActiveTab(sc)}
+                  >
                     {sc.charAt(0).toUpperCase() + sc.slice(1)}
                   </button>
                 ))}

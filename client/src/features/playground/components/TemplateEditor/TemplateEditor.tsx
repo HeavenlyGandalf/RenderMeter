@@ -1,4 +1,5 @@
 import Editor from '@monaco-editor/react';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   value: string;
@@ -6,9 +7,10 @@ interface Props {
 }
 
 export default function TemplateEditor({ value, onChange }: Props) {
+  const { t } = useTranslation();
   return (
     <div className="field">
-      <label>Template</label>
+      <label>{t('playground.templateLabel')}</label>
       <div className="editor-wrap">
         <Editor
           height="200px"

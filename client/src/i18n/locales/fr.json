@@ -30,7 +30,16 @@
   "playground": {
     "title": "Bac à sable",
     "subtitle": "Écrivez, rendez et chronométrez vos templates en temps réel",
-    "serverBadge": "Rendu côté serveur (Node.js)"
+    "serverBadge": "Rendu côté serveur (Node.js)",
+    "templateLabel": "Template"
+  },
+  "chart": {
+    "yAxis": "temps de rendu moyen (ms)"
+  },
+  "errorBoundary": {
+    "title": "Une erreur est survenue",
+    "message": "L'interface a rencontré une erreur inattendue. Essayez de recharger la page.",
+    "reload": "Recharger"
   },
   "runner": {
     "run": "Lancer le benchmark",

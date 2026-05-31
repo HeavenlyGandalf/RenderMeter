@@ -30,7 +30,16 @@
   "playground": {
     "title": "Playground",
     "subtitle": "Write, render and time single templates interactively",
-    "serverBadge": "Renders on server (Node.js)"
+    "serverBadge": "Renders on server (Node.js)",
+    "templateLabel": "Template"
+  },
+  "chart": {
+    "yAxis": "avg render time (ms)"
+  },
+  "errorBoundary": {
+    "title": "Something went wrong",
+    "message": "The interface hit an unexpected error. Try reloading the page.",
+    "reload": "Reload"
   },
   "runner": {
     "run": "Run Benchmark",

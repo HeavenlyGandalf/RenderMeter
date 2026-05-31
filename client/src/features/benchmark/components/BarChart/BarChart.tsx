@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import s from './BarChart.module.css';
 import type { BenchmarkRun, TemplateEngine } from '../../../../shared/types';
 import { ENGINE_COLORS } from '../../../../shared/constants';
@@ -10,6 +11,7 @@ const CH = H - PAD.top - PAD.bottom;
 function r3(n: number) { return n < 1 ? n.toFixed(3) : n.toFixed(1); }
 
 export default function BarChart({ run }: { run: BenchmarkRun }) {
+  const { t } = useTranslation();
   const { results, engines } = run;
   if (!results.length || !engines.length) return null;
 
@@ -64,7 +66,7 @@ export default function BarChart({ run }: { run: BenchmarkRun }) {
           ))}
 
           <text transform={`translate(-44, ${CH / 2}) rotate(-90)`} textAnchor="middle" fontSize={10} fill="#4a5568">
-            avg render time (ms)
+            {t('chart.yAxis')}
           </text>
         </g>
 
