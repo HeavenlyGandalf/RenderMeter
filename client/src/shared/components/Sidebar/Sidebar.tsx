@@ -31,14 +31,14 @@ function DocsIcon() {
   );
 }
 
+const NAV_ROUTES = [
+  { to: '/', end: true,  icon: <BenchmarkIcon />,  labelKey: 'nav.benchmark',  subKey: 'nav.benchmarkSub' },
+  { to: '/playground', end: false, icon: <PlaygroundIcon />, labelKey: 'nav.playground', subKey: 'nav.playgroundSub' },
+  { to: '/docs', end: false, icon: <DocsIcon />, labelKey: 'nav.docs', subKey: 'nav.docsSub' },
+] as const;
+
 export default function Sidebar() {
   const { t } = useTranslation();
-
-  const NAV_ITEMS = [
-    { to: '/', end: true,  icon: <BenchmarkIcon />,  label: t('nav.benchmark'),  sub: t('nav.benchmarkSub') },
-    { to: '/playground', end: false, icon: <PlaygroundIcon />, label: t('nav.playground'), sub: t('nav.playgroundSub') },
-    { to: '/docs', end: false, icon: <DocsIcon />, label: t('nav.docs'), sub: t('nav.docsSub') },
-  ];
 
   return (
     <aside className={s.sidebar}>
@@ -59,7 +59,7 @@ export default function Sidebar() {
       <div className={s.sectionLabel}>{t('sidebar.nav')}</div>
 
       <nav className={s.nav}>
-        {NAV_ITEMS.map((item) => (
+        {NAV_ROUTES.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
@@ -68,8 +68,8 @@ export default function Sidebar() {
           >
             <span className={s.linkIcon}>{item.icon}</span>
             <span className={s.linkText}>
-              <span className={s.linkLabel}>{item.label}</span>
-              <span className={s.linkSub}>{item.sub}</span>
+              <span className={s.linkLabel}>{t(item.labelKey)}</span>
+              <span className={s.linkSub}>{t(item.subKey)}</span>
             </span>
           </NavLink>
         ))}

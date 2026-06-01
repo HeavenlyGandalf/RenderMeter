@@ -52,8 +52,8 @@ export default function SummaryBlock({ run }: { run: BenchmarkRun }) {
     <div className={s.block}>
       <h2>{t('summary.heading')}</h2>
       <ul className={s.list}>
-        {points.map((p, i) => (
-          <li key={i} className={`${s.item} ${s[p.type]}`}>{t(p.key, p.vars)}</li>
+        {points.map((p) => (
+          <li key={`${p.key}-${p.vars.scenario ?? ''}-${p.vars.engine ?? ''}`} className={`${s.item} ${s[p.type]}`}>{t(p.key, p.vars)}</li>
         ))}
       </ul>
     </div>

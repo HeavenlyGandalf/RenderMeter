@@ -29,14 +29,14 @@ export default function ScenarioDataViewer({ onCustomDataChange }: Props) {
       setParseError('');
       onCustomDataChange(scenarioData[activeTab] as object);
     }
-  }, [customMode, activeTab, scenarioData]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [customMode, activeTab, scenarioData, onCustomDataChange]);
 
   useEffect(() => {
     if (!customMode) {
       onCustomDataChange(null);
       setParseError('');
     }
-  }, [customMode]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [customMode, onCustomDataChange]);
 
   function handleEditorChange(value: string | undefined) {
     const raw = value ?? '';

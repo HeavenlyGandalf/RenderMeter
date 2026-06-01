@@ -4,6 +4,7 @@ import Sidebar from './shared/components/Sidebar/Sidebar';
 import BenchmarkPage from './features/benchmark/BenchmarkPage';
 import PlaygroundPage from './features/playground/PlaygroundPage';
 import DocsPage from './features/docs/DocsPage';
+import ErrorBoundary from './shared/components/ErrorBoundary/ErrorBoundary';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,19 +17,21 @@ const queryClient = new QueryClient({
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <div className="app-shell">
-          <Sidebar />
-          <div className="app-content">
-            <Routes>
-              <Route path="/" element={<BenchmarkPage />} />
-              <Route path="/playground" element={<PlaygroundPage />} />
-              <Route path="/docs" element={<DocsPage />} />
-            </Routes>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <div className="app-shell">
+            <Sidebar />
+            <div className="app-content">
+              <Routes>
+                <Route path="/" element={<BenchmarkPage />} />
+                <Route path="/playground" element={<PlaygroundPage />} />
+                <Route path="/docs" element={<DocsPage />} />
+              </Routes>
+            </div>
           </div>
-        </div>
-      </BrowserRouter>
-    </QueryClientProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }

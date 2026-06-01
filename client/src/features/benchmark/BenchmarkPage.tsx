@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { TemplateEngine, Scenario } from '../../shared/types';
@@ -25,9 +25,11 @@ export default function BenchmarkPage() {
   const { data: history = [] } = useBenchmarkHistory();
   const { mutate: runBenchmark, isPending, error: mutationError, reset } = useBenchmarkRun();
 
-  const currentRun = activeRunId
-    ? history.find((r) => r._id === activeRunId) ?? history[0]
-    : history[0];
+  const currentRun = history.find((r) => r._id === activeRunId) ?? history[0];
+
+  const handleCustomDataChange = useCallback((data: object | null) => {
+    setCustomData(data);
+  }, []);
 
   function handleRun() {
     if (engines.length === 0 || scenarios.length === 0) return;
@@ -80,7 +82,7 @@ export default function BenchmarkPage() {
       </div>
 
       <TemplateViewer />
-      <ScenarioDataViewer onCustomDataChange={setCustomData} />
+      <ScenarioDataViewer onCustomDataChange={handleCustomDataChange} />
 
       {currentRun && (
         <>
