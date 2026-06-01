@@ -13,11 +13,21 @@ export async function createResult(req: Request, res: Response): Promise<void> {
     return;
   }
 
-  const result = await saveResult({ templateEngine, executionTimeMs, templateSize });
-  res.status(201).json(result);
+  try {
+    const result = await saveResult({ templateEngine, executionTimeMs, templateSize });
+    res.status(201).json(result);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Failed to save result';
+    res.status(500).json({ error: message });
+  }
 }
 
 export async function listResults(_req: Request, res: Response): Promise<void> {
-  const results = await getRecentResults();
-  res.json(results);
+  try {
+    const results = await getRecentResults();
+    res.json(results);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Failed to fetch results';
+    res.status(500).json({ error: message });
+  }
 }

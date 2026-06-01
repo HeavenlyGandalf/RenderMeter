@@ -7,7 +7,7 @@ import type { TemplateEngine } from '../../../../shared/types';
 import { useTemplates } from '../../api';
 
 const LANG_MAP: Record<TemplateEngine, string> = {
-  handlebars: 'html', mustache: 'html', pug: 'python', ejs: 'html',
+  handlebars: 'html', mustache: 'html', pug: 'plaintext', ejs: 'html',
 };
 
 export default function TemplateViewer() {

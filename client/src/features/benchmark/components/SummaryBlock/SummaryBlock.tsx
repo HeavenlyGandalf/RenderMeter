@@ -18,13 +18,14 @@ function analyze(run: BenchmarkRun): Point[] {
     const [slowestName, slowestM] = entries[entries.length - 1];
     wins[fastestName] = (wins[fastestName] ?? 0) + 1;
 
+    const ratio = fastestM.avg > 0 ? (slowestM.avg / fastestM.avg).toFixed(1) : '∞';
     points.push({
       key: 'summary.winner', type: 'winner',
-      vars: { scenario, engine: fastestName, avg: fastestM.avg.toFixed(3), slowest: slowestName, ratio: (slowestM.avg / fastestM.avg).toFixed(1) },
+      vars: { scenario, engine: fastestName, avg: fastestM.avg.toFixed(3), slowest: slowestName, ratio },
     });
 
     for (const [engine, m] of entries) {
-      const spread = m.max / m.min;
+      const spread = m.min > 0 ? m.max / m.min : Infinity;
       if (spread > 5) {
         points.push({
           key: 'summary.variance', type: 'warn',

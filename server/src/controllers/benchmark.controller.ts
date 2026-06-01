@@ -42,31 +42,35 @@ export async function startBenchmark(req: Request, res: Response): Promise<void>
     return;
   }
 
-  if (runs < 1 || runs > MAX_RUNS) {
-    res.status(400).json({ error: `runs must be between 1 and ${MAX_RUNS}` });
+  if (!Number.isInteger(runs) || runs < 1 || runs > MAX_RUNS) {
+    res.status(400).json({ error: `runs must be an integer between 1 and ${MAX_RUNS}` });
     return;
   }
 
-  const results: ScenarioResult[] = runBenchmark(
-    engines,
-    scenarios as Scenario[],
-    runs,
-    customData ?? null
-  );
+  try {
+    const results: ScenarioResult[] = runBenchmark(
+      engines,
+      scenarios as Scenario[],
+      runs,
+      customData ?? null
+    );
 
-  const saved = await BenchmarkRunModel.create({
-    engines,
-    scenarios,
-    runs,
-    results,
-    isCustomData: !!customData,
-  });
-  res.json(saved);
+    const saved = await BenchmarkRunModel.create({ engines, scenarios, runs, results });
+    res.json(saved);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Benchmark failed';
+    res.status(500).json({ error: message });
+  }
 }
 
 export async function getBenchmarkHistory(_req: Request, res: Response): Promise<void> {
-  const history = await BenchmarkRunModel.find().sort({ createdAt: -1 }).limit(10);
-  res.json(history);
+  try {
+    const history = await BenchmarkRunModel.find().sort({ createdAt: -1 }).limit(10);
+    res.json(history);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Failed to fetch history';
+    res.status(500).json({ error: message });
+  }
 }
 
 export function getTemplates(_req: Request, res: Response): void {

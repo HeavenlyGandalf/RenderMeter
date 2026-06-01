@@ -6,6 +6,7 @@ import ThTooltip from '../../../../shared/components/ThTooltip/ThTooltip';
 
 function fastest(engines: Partial<Record<TemplateEngine, EngineMetrics>>): string {
   const entries = Object.entries(engines) as [TemplateEngine, EngineMetrics][];
+  if (entries.length === 0) return '';
   return entries.reduce((a, b) => ((a[1].avg ?? Infinity) < (b[1].avg ?? Infinity) ? a : b))[0];
 }
 
