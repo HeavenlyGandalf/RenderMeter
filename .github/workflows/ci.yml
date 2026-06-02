@@ -6,7 +6,10 @@ on:
     branches: [main, develop]
   pull_request:
   workflow_dispatch:
-
+env:
+  REGISTRY: ghcr.io
+  GITHUB_OWNER_RAW: ${{ github.repository_owner }}
+  GITHUB_REPO_RAW: ${{ github.event.repository.name }}
 jobs:
   build-frontend:
       runs-on: ubuntu-latest
@@ -76,8 +79,8 @@ jobs:
       - name: Build Docker image
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./client
+          file: ./client/Dockerfile
           push: true
           load: true
           tags: |
@@ -112,8 +115,8 @@ jobs:
       - name: Build Docker image
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./server
+          file: ./server/Dockerfile
           push: true
           load: true
           tags: |
