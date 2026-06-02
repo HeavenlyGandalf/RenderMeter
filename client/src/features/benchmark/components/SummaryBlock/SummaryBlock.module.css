@@ -17,6 +17,18 @@
   border-left: 2px solid transparent;
 }
 
-.winner { background: var(--green-dim);  color: var(--green);  border-left-color: var(--green); }
-.info   { background: var(--accent-dim); color: var(--accent); border-left-color: var(--accent); }
-.warn   { background: var(--yellow-dim); color: var(--yellow); border-left-color: var(--yellow); }
+.winner {
+  background: var(--green-dim);
+  color: var(--green);
+  border-left-color: var(--green);
+}
+.info {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
+.warn {
+  background: var(--yellow-dim);
+  color: var(--yellow);
+  border-left-color: var(--yellow);
+}

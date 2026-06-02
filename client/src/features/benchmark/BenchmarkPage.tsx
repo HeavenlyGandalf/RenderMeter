@@ -47,8 +47,12 @@ export default function BenchmarkPage() {
       <div className="page-header">
         <div className="page-title">{t('benchmark.title')}</div>
         <div className="page-subtitle">
-          {t('benchmark.subtitle')}{' — '}
-          <Link to="/docs" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: 'inherit' }}>
+          {t('benchmark.subtitle')}
+          {' — '}
+          <Link
+            to="/docs"
+            style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: 'inherit' }}
+          >
             {t('docs.title')} →
           </Link>
         </div>
@@ -69,14 +73,20 @@ export default function BenchmarkPage() {
             disabled={isPending}
           >
             {RUNS_OPTIONS.map((n) => (
-              <option key={n} value={n}>{t('benchmark.runsOption', { count: n })}</option>
+              <option key={n} value={n}>
+                {t('benchmark.runsOption', { count: n })}
+              </option>
             ))}
           </select>
         </div>
 
         {errorMsg && <ErrorMessage message={errorMsg} onDismiss={reset} />}
 
-        <button className="btn-primary" onClick={handleRun} disabled={isPending || engines.length === 0 || scenarios.length === 0}>
+        <button
+          className="btn-primary"
+          onClick={handleRun}
+          disabled={isPending || engines.length === 0 || scenarios.length === 0}
+        >
           {isPending ? t('benchmark.running') : t('benchmark.runAll')}
         </button>
       </div>
@@ -87,10 +97,12 @@ export default function BenchmarkPage() {
       {currentRun && (
         <>
           <div className="card">
-            <h2>{t('benchmark.resultsHeading', {
-              runs: currentRun.runs,
-              date: formatDateTime(currentRun.createdAt, i18n.language),
-            })}</h2>
+            <h2>
+              {t('benchmark.resultsHeading', {
+                runs: currentRun.runs,
+                date: formatDateTime(currentRun.createdAt, i18n.language),
+              })}
+            </h2>
             <ComparisonTable run={currentRun} />
           </div>
 

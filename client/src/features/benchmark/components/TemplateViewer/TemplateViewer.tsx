@@ -7,7 +7,10 @@ import type { TemplateEngine } from '../../../../shared/types';
 import { useTemplates } from '../../api';
 
 const LANG_MAP: Record<TemplateEngine, string> = {
-  handlebars: 'html', mustache: 'html', pug: 'plaintext', ejs: 'html',
+  handlebars: 'html',
+  mustache: 'html',
+  pug: 'plaintext',
+  ejs: 'html',
 };
 
 export default function TemplateViewer() {
@@ -42,7 +45,9 @@ export default function TemplateViewer() {
           </div>
 
           {isLoading ? (
-            <p className="muted" style={{ padding: '0.75rem 0' }}>{t('templates.loading')}</p>
+            <p className="muted" style={{ padding: '0.75rem 0' }}>
+              {t('templates.loading')}
+            </p>
           ) : templates ? (
             <div className="editor-wrap">
               <Editor
@@ -50,7 +55,15 @@ export default function TemplateViewer() {
                 language={LANG_MAP[engine]}
                 theme="vs-dark"
                 value={templates[engine] ?? '// template not found'}
-                options={{ readOnly: true, minimap: { enabled: false }, fontSize: 12, lineNumbers: 'on', scrollBeyondLastLine: false, wordWrap: 'on', padding: { top: 8, bottom: 8 } }}
+                options={{
+                  readOnly: true,
+                  minimap: { enabled: false },
+                  fontSize: 12,
+                  lineNumbers: 'on',
+                  scrollBeyondLastLine: false,
+                  wordWrap: 'on',
+                  padding: { top: 8, bottom: 8 },
+                }}
               />
             </div>
           ) : null}

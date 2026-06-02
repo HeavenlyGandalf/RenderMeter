@@ -31,8 +31,14 @@ export default function ComparisonTable({ run }: { run: BenchmarkRun }) {
                   <ThTooltip label={t('comparison.colMedian')} tip={t('comparison.colMedianTip')} />
                   <ThTooltip label={t('comparison.colMin')} tip={t('comparison.colMinTip')} />
                   <ThTooltip label={t('comparison.colMax')} tip={t('comparison.colMaxTip')} />
-                  <ThTooltip label={t('comparison.colCompile')} tip={t('comparison.colCompileTip')} />
-                  <ThTooltip label={t('comparison.colVsFastest')} tip={t('comparison.colVsFastestTip')} />
+                  <ThTooltip
+                    label={t('comparison.colCompile')}
+                    tip={t('comparison.colCompileTip')}
+                  />
+                  <ThTooltip
+                    label={t('comparison.colVsFastest')}
+                    tip={t('comparison.colVsFastestTip')}
+                  />
                 </tr>
               </thead>
               <tbody>
@@ -44,15 +50,24 @@ export default function ComparisonTable({ run }: { run: BenchmarkRun }) {
                     return (
                       <tr key={engine} className={engine === fastestEngine ? 'fastest' : ''}>
                         <td>
-                          <span className="engine-dot" style={{ background: ENGINE_COLORS[engine] }} />
+                          <span
+                            className="engine-dot"
+                            style={{ background: ENGINE_COLORS[engine] }}
+                          />
                           {engine}
                         </td>
-                        <td><strong>{m.avg?.toFixed(3) ?? '—'}</strong></td>
+                        <td>
+                          <strong>{m.avg?.toFixed(3) ?? '—'}</strong>
+                        </td>
                         <td>{m.median?.toFixed(3) ?? '—'}</td>
                         <td>{m.min?.toFixed(3) ?? '—'}</td>
                         <td>{m.max?.toFixed(3) ?? '—'}</td>
                         <td>{m.compileMs?.toFixed(3) ?? '—'}</td>
-                        <td>{engine === fastestEngine || ratio === null ? '—' : `×${ratio.toFixed(2)}`}</td>
+                        <td>
+                          {engine === fastestEngine || ratio === null
+                            ? '—'
+                            : `×${ratio.toFixed(2)}`}
+                        </td>
                       </tr>
                     );
                   })}

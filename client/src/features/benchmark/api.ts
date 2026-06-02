@@ -5,7 +5,7 @@ import type { BenchmarkRun, TemplateEngine, Scenario } from '../../shared/types'
 // ── Query keys ────────────────────────────────────────────────────────────────
 
 export const benchmarkKeys = {
-  history:   () => ['benchmark', 'history'] as const,
+  history: () => ['benchmark', 'history'] as const,
   templates: () => ['benchmark', 'templates'] as const,
   scenarios: () => ['benchmark', 'scenarios'] as const,
 };
@@ -73,9 +73,8 @@ export function useBenchmarkRun() {
   return useMutation({
     mutationFn: postBenchmark,
     onSuccess: (newRun) => {
-      queryClient.setQueryData<BenchmarkRun[]>(
-        benchmarkKeys.history(),
-        (prev = []) => [newRun, ...prev].slice(0, 10),
+      queryClient.setQueryData<BenchmarkRun[]>(benchmarkKeys.history(), (prev = []) =>
+        [newRun, ...prev].slice(0, 10),
       );
     },
   });

@@ -51,9 +51,8 @@ export function useSaveResult() {
   return useMutation({
     mutationFn: postResult,
     onSuccess: (saved) => {
-      queryClient.setQueryData<SavedResult[]>(
-        playgroundKeys.history(),
-        (prev = []) => [saved, ...prev].slice(0, 20),
+      queryClient.setQueryData<SavedResult[]>(playgroundKeys.history(), (prev = []) =>
+        [saved, ...prev].slice(0, 20),
       );
     },
   });

@@ -15,7 +15,9 @@
   transition: color 0.12s;
 }
 
-.toggle:hover { color: var(--accent); }
+.toggle:hover {
+  color: var(--accent);
+}
 
 .toggleIcon {
   font-size: 0.65rem;

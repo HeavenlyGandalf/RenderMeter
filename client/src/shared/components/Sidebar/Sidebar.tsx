@@ -5,7 +5,16 @@ import s from './Sidebar.module.css';
 
 function BenchmarkIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
     </svg>
   );
@@ -13,7 +22,16 @@ function BenchmarkIcon() {
 
 function PlaygroundIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <polyline points="16 18 22 12 16 6" />
       <polyline points="8 6 2 12 8 18" />
     </svg>
@@ -22,7 +40,16 @@ function PlaygroundIcon() {
 
 function DocsIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
       <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
       <line x1="9" y1="7" x2="15" y2="7" />
@@ -32,8 +59,20 @@ function DocsIcon() {
 }
 
 const NAV_ROUTES = [
-  { to: '/', end: true,  icon: <BenchmarkIcon />,  labelKey: 'nav.benchmark',  subKey: 'nav.benchmarkSub' },
-  { to: '/playground', end: false, icon: <PlaygroundIcon />, labelKey: 'nav.playground', subKey: 'nav.playgroundSub' },
+  {
+    to: '/',
+    end: true,
+    icon: <BenchmarkIcon />,
+    labelKey: 'nav.benchmark',
+    subKey: 'nav.benchmarkSub',
+  },
+  {
+    to: '/playground',
+    end: false,
+    icon: <PlaygroundIcon />,
+    labelKey: 'nav.playground',
+    subKey: 'nav.playgroundSub',
+  },
   { to: '/docs', end: false, icon: <DocsIcon />, labelKey: 'nav.docs', subKey: 'nav.docsSub' },
 ] as const;
 
@@ -46,7 +85,13 @@ export default function Sidebar() {
         <div className={s.logo}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
             <rect x="2" y="2" width="20" height="20" rx="4" fill="var(--accent)" opacity="0.15" />
-            <polyline points="5 15 9 9 13 13 17 7" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <polyline
+              points="5 15 9 9 13 13 17 7"
+              stroke="var(--accent)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
             <circle cx="17" cy="7" r="2" fill="var(--accent)" />
           </svg>
         </div>

@@ -22,7 +22,13 @@ const EDITOR_OPTIONS = {
   padding: { top: 8, bottom: 8 },
 };
 
-export default function EditorTabs({ template, onTemplateChange, data, onDataChange, dataError }: Props) {
+export default function EditorTabs({
+  template,
+  onTemplateChange,
+  data,
+  onDataChange,
+  dataError,
+}: Props) {
   const { t } = useTranslation();
   const [active, setActive] = useState<Tab>('template');
 
@@ -69,9 +75,7 @@ export default function EditorTabs({ template, onTemplateChange, data, onDataCha
         </div>
       </div>
 
-      {dataError && (
-        <div className={styles.dataError}>{dataError}</div>
-      )}
+      {dataError && <div className={styles.dataError}>{dataError}</div>}
     </div>
   );
 }

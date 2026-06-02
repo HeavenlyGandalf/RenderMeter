@@ -9,20 +9,18 @@ const STORAGE_KEY = 'rendermeter-lang';
 
 const savedLang = localStorage.getItem(STORAGE_KEY) ?? 'en';
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: { translation: en },
-      ru: { translation: ru },
-      fr: { translation: fr },
-    },
-    lng: savedLang,
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: en },
+    ru: { translation: ru },
+    fr: { translation: fr },
+  },
+  lng: savedLang,
+  fallbackLng: 'en',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 i18n.on('languageChanged', (lng) => {
   localStorage.setItem(STORAGE_KEY, lng);

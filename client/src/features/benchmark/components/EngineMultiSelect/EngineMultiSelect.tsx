@@ -13,9 +13,7 @@ export default function EngineMultiSelect({ selected, onChange, disabled }: Prop
 
   const toggle = (engine: TemplateEngine) =>
     onChange(
-      selected.includes(engine)
-        ? selected.filter((e) => e !== engine)
-        : [...selected, engine],
+      selected.includes(engine) ? selected.filter((e) => e !== engine) : [...selected, engine],
     );
 
   return (

@@ -5,7 +5,9 @@
 }
 
 @media (max-width: 700px) {
-  .grid { grid-template-columns: 1fr; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .engineCard {
@@ -63,7 +65,9 @@
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-bright);
   background: var(--surface-2);
-  transition: color 0.12s, border-color 0.12s;
+  transition:
+    color 0.12s,
+    border-color 0.12s;
   white-space: nowrap;
 }
 
@@ -134,12 +138,25 @@
   white-space: pre;
 }
 
-.tag { color: #7dd3fc; }
-.attr { color: #86efac; }
-.expr { color: #fbbf24; }
-.kw  { color: #c084fc; }
-.str { color: #86efac; }
-.comment { color: var(--text-faint); font-style: italic; }
+.tag {
+  color: #7dd3fc;
+}
+.attr {
+  color: #86efac;
+}
+.expr {
+  color: #fbbf24;
+}
+.kw {
+  color: #c084fc;
+}
+.str {
+  color: #86efac;
+}
+.comment {
+  color: var(--text-faint);
+  font-style: italic;
+}
 
 .performanceBadge {
   display: inline-flex;

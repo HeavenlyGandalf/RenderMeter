@@ -1,4 +1,7 @@
-.container { display: flex; flex-direction: column; }
+.container {
+  display: flex;
+  flex-direction: column;
+}
 
 .tabs {
   display: flex;
@@ -18,13 +21,19 @@
   border-bottom: none;
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   cursor: pointer;
-  transition: color 0.15s, background 0.15s, border-color 0.15s;
+  transition:
+    color 0.15s,
+    background 0.15s,
+    border-color 0.15s;
   position: relative;
   bottom: -1px;
   z-index: 1;
 }
 
-.tab:hover { color: var(--text-dim); background: var(--surface-3); }
+.tab:hover {
+  color: var(--text-dim);
+  background: var(--surface-3);
+}
 
 .tab.active {
   color: var(--accent);

@@ -56,7 +56,11 @@ export default function ScenarioDataViewer({ onCustomDataChange }: Props) {
       <button className={s.toggle} onClick={() => setOpen((v) => !v)}>
         <span className={s.toggleIcon}>{open ? '▾' : '▸'}</span>
         {t('scenarioData.toggleLabel')}
-        {customMode && <span className="badge-note" style={{ marginLeft: '0.5rem' }}>{t('scenarioData.customBadge')}</span>}
+        {customMode && (
+          <span className="badge-note" style={{ marginLeft: '0.5rem' }}>
+            {t('scenarioData.customBadge')}
+          </span>
+        )}
       </button>
 
       {open && (
@@ -82,7 +86,11 @@ export default function ScenarioDataViewer({ onCustomDataChange }: Props) {
 
               <div className={s.customRow}>
                 <label className="checkbox-label">
-                  <input type="checkbox" checked={customMode} onChange={() => setCustomMode((p) => !p)} />
+                  <input
+                    type="checkbox"
+                    checked={customMode}
+                    onChange={() => setCustomMode((p) => !p)}
+                  />
                   {t('scenarioData.customToggle')}
                 </label>
                 {customMode && <p className={s.note}>{t('scenarioData.customNote')}</p>}
@@ -96,7 +104,15 @@ export default function ScenarioDataViewer({ onCustomDataChange }: Props) {
                   language="json"
                   theme="vs-dark"
                   value={customMode ? editValue : viewValue}
-                  options={{ readOnly: !customMode, minimap: { enabled: false }, fontSize: 12, lineNumbers: 'on', scrollBeyondLastLine: false, wordWrap: 'off', folding: true }}
+                  options={{
+                    readOnly: !customMode,
+                    minimap: { enabled: false },
+                    fontSize: 12,
+                    lineNumbers: 'on',
+                    scrollBeyondLastLine: false,
+                    wordWrap: 'off',
+                    folding: true,
+                  }}
                   onChange={customMode ? handleEditorChange : undefined}
                 />
               </div>

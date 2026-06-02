@@ -14,13 +14,21 @@ import EditorTabs from './components/EditorTabs/EditorTabs';
 import BenchmarkRunner from './components/BenchmarkRunner/BenchmarkRunner';
 
 const DEFAULT_DATA = JSON.stringify(
-  { title: 'RenderMeter', items: ['Apple', 'Banana', 'Cherry'], user: { name: 'Developer', active: true } },
+  {
+    title: 'RenderMeter',
+    items: ['Apple', 'Banana', 'Cherry'],
+    user: { name: 'Developer', active: true },
+  },
   null,
   2,
 );
 
 function parseData(raw: string): Record<string, unknown> | null {
-  try { return JSON.parse(raw); } catch { return null; }
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
 }
 
 function renderClientSide(
@@ -31,9 +39,14 @@ function renderClientSide(
   const start = performance.now();
   let html: string;
   switch (engine) {
-    case 'handlebars': html = Handlebars.compile(template)(data); break;
-    case 'mustache':   html = Mustache.render(template, data); break;
-    default: throw new Error(`Not a client-side engine: ${engine}`);
+    case 'handlebars':
+      html = Handlebars.compile(template)(data);
+      break;
+    case 'mustache':
+      html = Mustache.render(template, data);
+      break;
+    default:
+      throw new Error(`Not a client-side engine: ${engine}`);
   }
   return { html, executionTimeMs: Math.round((performance.now() - start) * 1000) / 1000 };
 }
@@ -71,21 +84,32 @@ export default function PlaygroundPage() {
     }
 
     if (SERVER_ENGINES.includes(engine)) {
-      serverRender({ engine, template, data }, {
-        onSuccess: (rendered) => {
-          setResult(rendered);
-          saveResult({ templateEngine: engine, executionTimeMs: rendered.executionTimeMs, templateSize: template.length });
+      serverRender(
+        { engine, template, data },
+        {
+          onSuccess: (rendered) => {
+            setResult(rendered);
+            saveResult({
+              templateEngine: engine,
+              executionTimeMs: rendered.executionTimeMs,
+              templateSize: template.length,
+            });
+          },
+          onError: (err) => {
+            setError(err instanceof Error ? err.message : 'Render failed');
+            setResult(null);
+          },
         },
-        onError: (err) => {
-          setError(err instanceof Error ? err.message : 'Render failed');
-          setResult(null);
-        },
-      });
+      );
     } else {
       try {
         const rendered = renderClientSide(engine, template, data);
         setResult(rendered);
-        saveResult({ templateEngine: engine, executionTimeMs: rendered.executionTimeMs, templateSize: template.length });
+        saveResult({
+          templateEngine: engine,
+          executionTimeMs: rendered.executionTimeMs,
+          templateSize: template.length,
+        });
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Render failed');
         setResult(null);
@@ -98,8 +122,12 @@ export default function PlaygroundPage() {
       <div className="page-header">
         <div className="page-title">{t('playground.title')}</div>
         <div className="page-subtitle">
-          {t('playground.subtitle')}{' — '}
-          <Link to="/docs" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: 'inherit' }}>
+          {t('playground.subtitle')}
+          {' — '}
+          <Link
+            to="/docs"
+            style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: 'inherit' }}
+          >
             {t('docs.title')} →
           </Link>
         </div>
@@ -121,7 +149,11 @@ export default function PlaygroundPage() {
           onDataChange={setContextRaw}
           dataError={dataError}
         />
-        <BenchmarkRunner isRunning={isRunning} executionTimeMs={result?.executionTimeMs ?? null} onRun={handleRun} />
+        <BenchmarkRunner
+          isRunning={isRunning}
+          executionTimeMs={result?.executionTimeMs ?? null}
+          onRun={handleRun}
+        />
         {error && <ErrorMessage message={error} onDismiss={() => setError('')} />}
       </div>
 

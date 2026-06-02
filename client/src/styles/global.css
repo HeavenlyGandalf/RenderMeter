@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ── Reset ───────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 /* ── Design tokens ───────────────────────── */
 :root {
@@ -30,7 +36,10 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}
 
 body {
   font-family: var(--font-mono);
@@ -42,8 +51,15 @@ body {
 }
 
 /* ── App shell ───────────────────────────── */
-.app-shell { display: flex; min-height: 100vh; }
-.app-content { flex: 1; min-width: 0; overflow-x: hidden; }
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+.app-content {
+  flex: 1;
+  min-width: 0;
+  overflow-x: hidden;
+}
 
 /* ── Page layout ─────────────────────────── */
 .page {
@@ -72,7 +88,10 @@ body {
   letter-spacing: -0.02em;
 }
 
-.page-subtitle { font-size: 0.78rem; color: var(--text-dim); }
+.page-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
 
 /* ── Card ────────────────────────────────── */
 .card {
@@ -98,9 +117,17 @@ body {
 }
 
 /* ── Controls / Field ────────────────────── */
-.controls { display: flex; flex-direction: column; gap: 1.25rem; }
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
 
-.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
 
 .field label {
   font-size: 0.72rem;
@@ -131,8 +158,13 @@ select {
   padding-right: 2rem;
 }
 
-select:focus { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-dim); }
-select option { background: var(--surface-2); }
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-dim);
+}
+select option {
+  background: var(--surface-2);
+}
 
 /* ── Buttons ─────────────────────────────── */
 .btn-primary {
@@ -145,12 +177,20 @@ select option { background: var(--surface-2); }
   font-weight: 600;
   font-family: var(--font-mono);
   cursor: pointer;
-  transition: opacity 0.15s, box-shadow 0.15s;
+  transition:
+    opacity 0.15s,
+    box-shadow 0.15s;
   letter-spacing: 0.03em;
 }
 
-.btn-primary:hover:not(:disabled) { opacity: 0.88; box-shadow: 0 0 12px var(--accent-glow); }
-.btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.88;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+.btn-primary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
 
 .btn-ghost {
   background: var(--surface-2);
@@ -161,13 +201,22 @@ select option { background: var(--surface-2); }
   font-size: 0.75rem;
   font-family: var(--font-mono);
   cursor: pointer;
-  transition: background 0.12s, color 0.12s;
+  transition:
+    background 0.12s,
+    color 0.12s;
 }
 
-.btn-ghost:hover { background: var(--surface-3); color: var(--text); }
+.btn-ghost:hover {
+  background: var(--surface-3);
+  color: var(--text);
+}
 
 /* ── Runner ──────────────────────────────── */
-.runner { display: flex; align-items: center; gap: 1rem; }
+.runner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
 .time-badge {
   font-size: 0.82rem;
@@ -181,7 +230,11 @@ select option { background: var(--surface-2); }
 }
 
 /* ── Checkboxes ──────────────────────────── */
-.checkboxes-list { display: flex; flex-direction: column; gap: 0.4rem; }
+.checkboxes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
 
 .checkbox-label {
   display: flex;
@@ -194,14 +247,28 @@ select option { background: var(--surface-2); }
   transition: color 0.12s;
 }
 
-.checkbox-label:hover { color: var(--text); }
+.checkbox-label:hover {
+  color: var(--text);
+}
 
-input[type="checkbox"] { accent-color: var(--accent); width: 13px; height: 13px; cursor: pointer; }
+input[type='checkbox'] {
+  accent-color: var(--accent);
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+}
 
-.engine-label.checked { color: var(--engine-color, var(--accent)); font-weight: 600; }
+.engine-label.checked {
+  color: var(--engine-color, var(--accent));
+  font-weight: 600;
+}
 
 /* ── Scenario ────────────────────────────── */
-.scenario-list { display: flex; flex-direction: column; gap: 0.4rem; }
+.scenario-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
 
 .scenario-badge {
   font-size: 0.65rem;
@@ -216,10 +283,18 @@ input[type="checkbox"] { accent-color: var(--accent); width: 13px; height: 13px;
   border: 1px solid var(--border-bright);
 }
 
-.scenario-desc { color: var(--text-faint); font-size: 0.72rem; margin-left: 0.3rem; }
+.scenario-desc {
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  margin-left: 0.3rem;
+}
 
 /* ── Results table (shared) ──────────────── */
-.results-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
 
 .results-table th,
 .results-table td {
@@ -236,22 +311,60 @@ input[type="checkbox"] { accent-color: var(--accent); width: 13px; height: 13px;
   letter-spacing: 0.1em;
 }
 
-.results-table tr.fastest td { background: var(--green-dim); color: var(--green); }
-.results-table tr.fastest td:first-child { border-left: 2px solid var(--green); }
+.results-table tr.fastest td {
+  background: var(--green-dim);
+  color: var(--green);
+}
+.results-table tr.fastest td:first-child {
+  border-left: 2px solid var(--green);
+}
 
 /* History table */
-.history-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-.history-table th, .history-table td { text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--border); }
-.history-table th { color: var(--text-faint); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
-.history-table tbody tr:last-child td { border-bottom: none; }
-.history-table tbody tr:hover td { background: var(--surface-2); }
-.history-table tbody tr.row-active td { background: var(--accent-dim); }
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+.history-table th,
+.history-table td {
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.history-table th {
+  color: var(--text-faint);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.history-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.history-table tbody tr:hover td {
+  background: var(--surface-2);
+}
+.history-table tbody tr.row-active td {
+  background: var(--accent-dim);
+}
 
 /* ── Engine dot ──────────────────────────── */
-.engine-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.4rem; vertical-align: middle; }
+.engine-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
 
 /* ── Tabs (shared) ───────────────────────── */
-.engine-tabs { display: flex; gap: 0.2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+.engine-tabs {
+  display: flex;
+  gap: 0.2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
 
 .tab-btn {
   background: none;
@@ -263,17 +376,34 @@ input[type="checkbox"] { accent-color: var(--accent); width: 13px; height: 13px;
   color: var(--text-dim);
   font-weight: 500;
   font-family: var(--font-mono);
-  transition: background 0.12s, color 0.12s;
+  transition:
+    background 0.12s,
+    color 0.12s;
 }
 
-.tab-btn:hover { background: var(--surface-2); color: var(--text); }
-.tab-btn.active { background: var(--accent-dim); color: var(--accent); border-color: rgba(0, 229, 255, 0.2); }
+.tab-btn:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+.tab-btn.active {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-color: rgba(0, 229, 255, 0.2);
+}
 
 /* ── Monaco wrapper ──────────────────────── */
-.editor-wrap { border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-bright); }
+.editor-wrap {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-bright);
+}
 
 /* ── Misc ────────────────────────────────── */
-.muted { color: var(--text-dim); font-size: 0.78rem; font-style: italic; }
+.muted {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-style: italic;
+}
 
 .badge-note {
   font-size: 0.7rem;
@@ -285,12 +415,27 @@ input[type="checkbox"] { accent-color: var(--accent); width: 13px; height: 13px;
   border: 1px solid var(--border-bright);
 }
 
-.server-note { min-height: 1.4rem; }
+.server-note {
+  min-height: 1.4rem;
+}
 
 /* ── Scrollbars ──────────────────────────── */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-bright);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-faint);
+}
 
-::selection { background: var(--accent-dim); color: var(--accent); }
+::selection {
+  background: var(--accent-dim);
+  color: var(--accent);
+}

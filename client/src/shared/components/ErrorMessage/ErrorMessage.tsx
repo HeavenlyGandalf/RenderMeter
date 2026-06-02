@@ -11,7 +11,9 @@ export default function ErrorMessage({ message, onDismiss }: Props) {
   return (
     <div className={s.banner} role="alert">
       <span>{message}</span>
-      <button onClick={onDismiss} aria-label={t('error.dismiss')}>×</button>
+      <button onClick={onDismiss} aria-label={t('error.dismiss')}>
+        ×
+      </button>
     </div>
   );
 }

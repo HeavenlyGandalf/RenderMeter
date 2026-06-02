@@ -15,9 +15,14 @@
   transition: color 0.12s;
 }
 
-.toggle:hover { color: var(--accent); }
+.toggle:hover {
+  color: var(--accent);
+}
 
-.toggleIcon { font-size: 0.65rem; color: var(--text-faint); }
+.toggleIcon {
+  font-size: 0.65rem;
+  color: var(--text-faint);
+}
 
 .body {
   margin-top: 1rem;
@@ -26,7 +31,11 @@
   gap: 0.75rem;
 }
 
-.customRow { display: flex; flex-direction: column; gap: 0.4rem; }
+.customRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
 
 .note {
   font-size: 0.73rem;

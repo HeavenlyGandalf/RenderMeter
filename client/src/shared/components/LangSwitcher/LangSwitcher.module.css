@@ -14,7 +14,10 @@
   letter-spacing: 0.06em;
   padding: 0.22rem 0.45rem;
   cursor: pointer;
-  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  transition:
+    background 0.12s,
+    color 0.12s,
+    border-color 0.12s;
 }
 
 .btn:hover {
