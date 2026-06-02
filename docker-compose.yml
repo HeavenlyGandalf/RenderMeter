@@ -1,0 +1,53 @@
+name: render_meter
+services:
+  
+  frontend:
+    image: render-meter-frontend
+    container_name: render_meter_frontend
+    environment:
+      - BACKEND_HOST=http://backend:3001/api
+    ports:
+      - "81:80"
+    networks:
+      - render_meter_network
+    restart: unless-stopped
+
+  backend:
+    image: render-meter-backend
+    container_name: render_meter_backend
+    environment:
+      - MONGO_URI=mongodb://render_meter_mongo:27017/rendermeter
+    ports:
+      - "3001:3001"
+    networks:
+      - render_meter_network
+    depends_on:
+      mongo:
+        condition: service_healthy
+    restart: unless-stopped
+  
+  mongo:
+    image: mongo:latest
+    container_name: render_meter_mongo
+    ports:
+      - "27017:27017"
+    command: ["mongod", "--logpath", "/dev/stdout", "--logappend", "--quiet"]
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - render_meter_network
+    restart: unless-stopped
+
+networks:
+  render_meter_network:
+    driver: bridge
+
+volumes:
+  mongo_data:
+    driver: local

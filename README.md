@@ -245,3 +245,8 @@ cd client
 npm install
 npm run dev
 ```
+
+## Сборка
+docker build -f Dockerfile -t render-meter-frontend .
+docker build -f Dockerfile -t render-meter-backend .
+docker compose up -d
