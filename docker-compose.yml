@@ -2,7 +2,7 @@ name: render_meter
 services:
   
   frontend:
-    image: render-meter-frontend
+    image: ghcr.io/heavenlygandalf/rendermeter/render-meter-frontend:latest
     container_name: render_meter_frontend
     environment:
       - BACKEND_HOST=http://backend:3001/api
@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: render-meter-backend
+    image: ghcr.io/heavenlygandalf/rendermeter/render-meter-backend:latest
     container_name: render_meter_backend
     environment:
       - MONGO_URI=mongodb://render_meter_mongo:27017/rendermeter
